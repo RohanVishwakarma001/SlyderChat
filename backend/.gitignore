@@ -1,10 +1,11 @@
 target/
 *.class
+*.log
 .vscode/
 .claude/
-# Contains real DB/Cloudinary/JWT secrets locally — never commit this.
-# See application.yml.example for the placeholder version.
-src/main/resources/application.yml
+# Your real local secrets go here (see application.yml for the safe, committed
+# template with env-var placeholders) — never commit this file.
+src/main/resources/application-local.yml
 .mvn/
 mvnw
 mvnw.cmd
