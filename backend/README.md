@@ -30,11 +30,11 @@ com.rohan.chatapp
 
 ```
 backend/
+├── Dockerfile, .dockerignore
+├── .env                                  your real secrets (gitignored — see Configuration below)
 ├── pom.xml
-├── src/main/java/com/rohan/chatapp/   (see package tree above)
 └── src/main/resources/
-    ├── application.yml.example         safe placeholder config (tracked in git)
-    └── application.yml                 your real config (gitignored — never commit this)
+    └── application.yml                   safe placeholder template (tracked in git, ships in the image)
 ```
 
 ## Prerequisites
@@ -46,13 +46,9 @@ backend/
 
 ## Configuration
 
-Copy the template and fill in your own values:
+`application.yml` is a **safe, committed template** — every value is `${SOME_VAR:default}`, so it contains no real secrets and is fine to ship in the Docker image as-is. Real values come from environment variables:
 
-```bash
-cp src/main/resources/application.yml.example src/main/resources/application.yml
-```
-
-| Property | Env var override | Notes |
+| Property | Env var | Notes |
 |---|---|---|
 | `spring.datasource.url` | `DB_URL` | Full **JDBC** URL — must literally start with `jdbc:postgresql://...`. NeonDB's dashboard gives you a plain `postgresql://user:pass@host/db?...` URI; you have to split that into `url` / `username` / `password` yourself and prefix the URL with `jdbc:`. Putting the raw value inside `${...}` (e.g. `${postgresql://...}`) is a common mistake — that syntax means "look up an env var with this name," not "use this literal string." |
 | `spring.datasource.username` | `DB_USERNAME` | |
@@ -62,7 +58,19 @@ cp src/main/resources/application.yml.example src/main/resources/application.yml
 | `app.otp.dev-mode` | — | `true` (default): OTP is logged **and** returned as `devOtp` in the `/request-otp` response — no SMS provider needed for local/dev testing. Set `false` for production once `OtpService.sendSms()` is wired to a real provider. |
 | `app.cloudinary.cloud-name` / `api-key` / `api-secret` | `CLOUDINARY_CLOUD_NAME` / `CLOUDINARY_API_KEY` / `CLOUDINARY_API_SECRET` | From your Cloudinary dashboard. |
 
-Either edit `application.yml` directly (fine for local dev) or export the env vars and leave the file's placeholders in place (better for deployment — see below).
+**For local dev**, drop those into a `backend/.env` file (gitignored, never bundled into the Docker image):
+
+```dotenv
+DB_URL=jdbc:postgresql://your-neon-host/neondb?sslmode=require
+DB_USERNAME=...
+DB_PASSWORD=...
+JWT_SECRET=some-long-random-string-32-chars-or-more
+CLOUDINARY_CLOUD_NAME=...
+CLOUDINARY_API_KEY=...
+CLOUDINARY_API_SECRET=...
+```
+
+`application.yml` imports it automatically (`spring.config.import: optional:file:.env[.properties]`) — no flags, no active profile, it just works whenever the file exists. `optional:` means nothing breaks without it either, which is what happens in deployment: there, set the same names as **real environment variables** in your host's dashboard instead (see Deployment below) — never commit `.env` or paste real values directly into `application.yml`.
 
 ## Running locally
 
@@ -178,7 +186,7 @@ Plain `Long` foreign-key columns throughout (no JPA `@ManyToOne` relations) — 
 
 **Render has no native Java/Maven runtime** (unlike Node/Python/Ruby/Go, which get Build Command / Start Command fields) — Java services there always go through Docker. A `Dockerfile` and `.dockerignore` are already included for exactly this.
 
-1. Push this repo to GitHub. **`application.yml` is gitignored — it never leaves your machine as-is; the deployed service needs its config from environment variables instead** (see the Configuration table above for the exact var names).
+1. Push this repo to GitHub — `application.yml` (the safe placeholder template) is committed and ships in the image; `.env` (your real secrets) is gitignored and never leaves your machine. **The deployed service gets its real config from environment variables set in Render's dashboard instead** (see the Configuration table above for the exact var names).
 2. Render → New → Web Service → connect the repo.
 3. When it asks for environment/language, pick **Docker** (there's no Java option). Set:
    - **Root Directory:** `backend`
