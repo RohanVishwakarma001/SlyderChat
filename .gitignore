@@ -4,9 +4,11 @@
 # macOS
 .DS_Store
 *.pem
+.env
 
 # local env files
 .env*.local
 .vscode/
 .claude/
 .github/
+whatsapp-backend/
