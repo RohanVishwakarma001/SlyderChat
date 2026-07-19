@@ -6,14 +6,23 @@ import { useUiStore } from '@/store/uiStore';
 import { LoginPage } from '@/pages/LoginPage';
 import { AppPage } from '@/pages/AppPage';
 import { ToastContainer } from '@/components/ToastContainer';
+import { useSlowRequest } from '@/hooks/useSlowRequest';
 
 function RequireAuth({ children }: { children: ReactNode }) {
   const status = useAuthStore((s) => s.status);
+  const isBooting = status === 'booting';
+  const wakingUp = useSlowRequest(isBooting, 4000);
 
-  if (status === 'booting') {
+  if (isBooting) {
     return (
-      <div className="flex h-full items-center justify-center text-sm text-[var(--color-text-dim)]">
-        Loading…
+      <div className="flex h-full flex-col items-center justify-center gap-2 text-sm text-[var(--color-text-dim)]">
+        <span>Loading…</span>
+        {wakingUp && (
+          <span className="animate-fade-in max-w-xs text-center text-xs">
+            The server was asleep and is starting back up — this can take up to a
+            minute on the first request.
+          </span>
+        )}
       </div>
     );
   }

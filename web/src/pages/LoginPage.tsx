@@ -5,6 +5,7 @@ import { useAuthStore } from '@/store/authStore';
 import { useUiStore } from '@/store/uiStore';
 import { normalizePhone } from '@/utils/format';
 import { requestNotificationPermission } from '@/lib/notifications';
+import { useSlowRequest } from '@/hooks/useSlowRequest';
 
 type Step = 'phone' | 'otp';
 
@@ -19,6 +20,7 @@ export function LoginPage() {
   const [digits, setDigits] = useState<string[]>(Array(6).fill(''));
   const [loading, setLoading] = useState(false);
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
+  const wakingUp = useSlowRequest(loading, 4000);
 
   const handleRequestOtp = async () => {
     const normalized = normalizePhone(phone);
@@ -146,8 +148,14 @@ export function LoginPage() {
               disabled={loading}
               className="mt-2 rounded-xl bg-[var(--color-accent)] py-2.5 text-sm font-semibold text-[#0A0E1A] transition hover:brightness-110 disabled:opacity-50"
             >
-              {loading ? 'Sending…' : 'Send code'}
+              {wakingUp ? 'Waking up server…' : loading ? 'Sending…' : 'Send code'}
             </button>
+            {wakingUp && (
+              <p className="animate-fade-in text-center text-xs text-[var(--color-text-dim)]">
+                The server was asleep and is starting back up — this can take up to a
+                minute on the first request. Hang tight.
+              </p>
+            )}
           </div>
         ) : (
           <div className="flex flex-col gap-5">
@@ -174,8 +182,14 @@ export function LoginPage() {
               disabled={loading}
               className="rounded-xl bg-[var(--color-accent)] py-2.5 text-sm font-semibold text-[#0A0E1A] transition hover:brightness-110 disabled:opacity-50"
             >
-              {loading ? 'Verifying…' : 'Verify & continue'}
+              {wakingUp ? 'Waking up server…' : loading ? 'Verifying…' : 'Verify & continue'}
             </button>
+            {wakingUp && (
+              <p className="animate-fade-in text-center text-xs text-[var(--color-text-dim)]">
+                The server was asleep and is starting back up — this can take up to a
+                minute on the first request. Hang tight.
+              </p>
+            )}
             <button
               onClick={() => setStep('phone')}
               className="text-xs text-[var(--color-text-dim)] hover:text-[var(--color-text)]"
