@@ -30,6 +30,15 @@ spring:
       keepalive-time: 30000
       connection-timeout: 30000
       validation-timeout: 5000
+      # DB_URL points at Neon's pooled endpoint (PgBouncer-style transaction pooling).
+      # That's incompatible with pgjdbc's server-side prepared-statement cache: a
+      # connection can get silently handed to a different backend session than the one
+      # that prepared a statement, so a schema/plan change on one session doesn't
+      # invalidate what another session has cached - surfacing as "cached plan must
+      # not change result type". prepareThreshold=0 keeps pgjdbc on client-side
+      # prepare only, which is the standard fix for JDBC drivers behind PgBouncer.
+      data-source-properties:
+        prepareThreshold: 0
 
   jpa:
     hibernate:
