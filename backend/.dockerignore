@@ -1,0 +1,8 @@
+target/
+*.class
+.idea/
+.vscode/
+.mvn/
+.github/
+application.yml
+README.md

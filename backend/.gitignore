@@ -1,6 +1,7 @@
 target/
 *.class
-
+.vscode/
+.claude/
 # Contains real DB/Cloudinary/JWT secrets locally — never commit this.
 # See application.yml.example for the placeholder version.
 src/main/resources/application.yml
@@ -22,6 +23,5 @@ mvnw.cmd
 *.iws
 *.iml
 *.ipr
-.claude
 ### VS Code ###
 .vscode/
