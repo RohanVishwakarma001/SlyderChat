@@ -19,6 +19,17 @@ spring:
     password: ${DB_PASSWORD:REPLACE_ME}
     hikari:
       maximum-pool-size: 5
+      # NeonDB's free tier suspends the compute (and drops connections) after a period of
+      # idleness. Without these, HikariCP can hand out a pooled connection that Neon has
+      # already killed server-side, surfacing as an intermittent 500 on any endpoint.
+      # max-lifetime/idle-timeout retire connections before they go stale; keepalive-time
+      # pings idle connections so dead ones are detected and replaced proactively instead
+      # of failing the next real query.
+      max-lifetime: 270000
+      idle-timeout: 240000
+      keepalive-time: 30000
+      connection-timeout: 30000
+      validation-timeout: 5000
 
   jpa:
     hibernate:
