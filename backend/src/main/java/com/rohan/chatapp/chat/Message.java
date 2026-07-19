@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
-import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,7 +38,7 @@ public class Message {
     @Column(nullable = false)
     private ContentType contentType;
 
-    @Lob
+    @Column(columnDefinition = "text")
     private String body;
 
     private String mediaUrl;
