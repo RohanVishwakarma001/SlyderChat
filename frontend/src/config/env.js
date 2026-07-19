@@ -1,16 +1,14 @@
 // Backend connection config.
 //
+// Deployed backend (default): https://slyderchat-1.onrender.com
+//
+// For LOCAL dev against `mvn spring-boot:run` instead, swap BASE_URL below for:
 //   Android emulator  -> http://10.0.2.2:8080     (emulator's alias for the host machine)
 //   iOS simulator     -> http://localhost:8080
-//   Physical device   -> http://<your-LAN-IP>:8080 (phone and dev machine on the same Wi-Fi)
-//
-// Defaulting to this machine's current LAN IP so a physical device works out of the box.
-// If you're running on an emulator/simulator instead, change HOST below.
-// If your LAN IP changes (new network, router reboot), run `ipconfig` (Windows) and
-// update it here — look for the IPv4 Address under your active Wi-Fi/Ethernet adapter.
+//   Physical device   -> http://<your-LAN-IP>:8080 (phone and dev machine on the same Wi-Fi —
+//                        run `ipconfig` / `ifconfig` for the current IPv4 address)
 
-const HOST = '192.168.31.129';
-const PORT = 8080;
+const BASE_URL = 'https://slyderchat-1.onrender.com';
 
-export const API_BASE_URL = `http://${HOST}:${PORT}`;
-export const WS_URL = `http://${HOST}:${PORT}`;
+export const API_BASE_URL = BASE_URL;
+export const WS_URL = BASE_URL;

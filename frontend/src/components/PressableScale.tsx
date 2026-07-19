@@ -1,8 +1,8 @@
 import * as Haptics from 'expo-haptics';
 import type { ReactNode } from 'react';
+import { Pressable } from 'react-native';
 import type { StyleProp, ViewStyle } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import { Pressable } from 'react-native-gesture-handler';
 
 type PressableScaleProps = {
   children: ReactNode;

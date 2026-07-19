@@ -7,7 +7,9 @@ import { TOKEN_STORAGE_KEY } from '@/config/storageKeys';
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 15000,
+  // Generous timeout: the free-tier backend sleeps after ~15 min idle and can
+  // take 30-60s to cold-start on the first request after a lull.
+  timeout: 60000,
 });
 
 apiClient.interceptors.request.use(async (config) => {
