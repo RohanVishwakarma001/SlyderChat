@@ -1,0 +1,52 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: chatapp
+
+  datasource:
+    # NeonDB Postgres JDBC URL. Example:
+    # jdbc:postgresql://ep-xxxx-xxxx.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
+    url: ${DB_URL:jdbc:postgresql://REPLACE_ME.neon.tech/neondb?sslmode=require}
+    username: ${DB_USERNAME:REPLACE_ME}
+    password: ${DB_PASSWORD:REPLACE_ME}
+    hikari:
+      maximum-pool-size: 5
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+        jdbc:
+          time_zone: UTC
+
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 25MB
+
+app:
+  jwt:
+    # Must be 32+ chars (HS256 key material)
+    secret: ${JWT_SECRET:REPLACE_ME_WITH_A_LONG_RANDOM_SECRET_32_CHARS_MIN}
+    expiration-ms: 2592000000 # 30 days
+
+  otp:
+    dev-mode: true
+    expiry-minutes: 5
+    max-attempts: 5
+
+  cloudinary:
+    cloud-name: ${CLOUDINARY_CLOUD_NAME:REPLACE_ME}
+    api-key: ${CLOUDINARY_API_KEY:REPLACE_ME}
+    api-secret: ${CLOUDINARY_API_SECRET:REPLACE_ME}
+    folder: chatapp
+
+logging:
+  level:
+    com.rohan.chatapp: DEBUG
+    org.springframework.web.socket: INFO

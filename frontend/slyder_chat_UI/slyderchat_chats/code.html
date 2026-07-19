@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>SlyderChat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#380d00",
+                        "on-secondary-fixed-variant": "#005047",
+                        "on-surface": "#1a1b1f",
+                        "secondary-fixed": "#a8f0e3",
+                        "secondary": "#1c695f",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#93492e",
+                        "inverse-on-surface": "#f1f0f5",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#66ff8e",
+                        "on-surface-variant": "#3c4a3d",
+                        "secondary-container": "#a5ede0",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-variant": "#e3e2e7",
+                        "tertiary-container": "#ffa07e",
+                        "on-primary-fixed-variant": "#005322",
+                        "surface-dim": "#dad9df",
+                        "primary": "#006d2f",
+                        "surface-container": "#eeedf3",
+                        "surface-tint": "#006d2f",
+                        "secondary-fixed-dim": "#8cd4c7",
+                        "surface-bright": "#faf9fe",
+                        "tertiary-fixed": "#ffdbcf",
+                        "outline-variant": "#bbcbb9",
+                        "surface-container-low": "#f4f3f8",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#002109",
+                        "outline": "#6c7b6b",
+                        "error": "#ba1a1a",
+                        "surface": "#faf9fe",
+                        "on-tertiary-fixed-variant": "#763319",
+                        "inverse-primary": "#3de273",
+                        "inverse-surface": "#2f3034",
+                        "surface-container-high": "#e9e7ed",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#005523",
+                        "primary-fixed-dim": "#3de273",
+                        "on-secondary-container": "#226e63",
+                        "on-error-container": "#93000a",
+                        "background": "#faf9fe",
+                        "primary-container": "#25d366",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "on-tertiary-container": "#78351b",
+                        "surface-container-highest": "#e3e2e7",
+                        "on-background": "#1a1b1f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter-list": "12px",
+                        "header-height-collapsed": "44px",
+                        "header-height-expanded": "96px",
+                        "margin-edge": "16px",
+                        "inset-card": "12px",
+                        "stack-default": "8px",
+                        "stack-compact": "4px"
+                    },
+                    "fontFamily": {
+                        "body": ["Inter"],
+                        "caption": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "subheadline": ["Inter"],
+                        "large-title": ["Inter"],
+                        "headline": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}],
+                        "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                        "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}],
+                        "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                        "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        .ios-status-bar { height: 44px; }
+        .ios-safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .chat-separator { margin-left: 72px; height: 0.5px; }
+        .scrolled-header { opacity: 0; transition: opacity 0.2s ease-in-out; }
+        .scrolling .scrolled-header { opacity: 1; }
+        .chat-row:active { background-color: #e5e5e5; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- iOS Status Bar -->
+<div class="fixed top-0 w-full z-[60] bg-surface/80 backdrop-blur-xl flex items-center justify-between px-6 ios-status-bar">
+<span class="font-semibold text-sm">9:41</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[18px]">wifi</span>
+<span class="material-symbols-outlined text-[20px]">battery_full</span>
+</div>
+</div>
+<!-- Top App Bar -->
+<header class="sticky top-0 w-full px-margin-edge pt-12 pb-2 z-50 flex items-center justify-between bg-surface/80 backdrop-blur-xl border-b-[0.5px] border-outline-variant/30" id="main-header">
+<button class="text-primary font-body hover:opacity-70 transition-opacity active:scale-95 duration-100">Edit</button>
+<div class="absolute left-1/2 -translate-x-1/2 scrolled-header">
+<span class="font-headline text-headline font-semibold text-on-surface">Chats</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary hover:opacity-70 transition-opacity cursor-pointer">photo_camera</span>
+<span class="material-symbols-outlined text-primary hover:opacity-70 transition-opacity cursor-pointer">edit_square</span>
+</div>
+</header>
+<main class="pb-24">
+<!-- Header Large Title Section -->
+<section class="px-margin-edge pt-4 pb-2">
+<h1 class="font-large-title text-large-title text-on-surface">Chats</h1>
+</section>
+<!-- Search Bar -->
+<section class="px-margin-edge py-2">
+<div class="relative group">
+<div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+</div>
+<input class="w-full bg-surface-container-high border-none rounded-xl py-1.5 pl-10 pr-4 text-body font-body focus:ring-0 placeholder:text-on-surface-variant/60" placeholder="Search" type="text"/>
+</div>
+</section>
+<!-- Filter Chips -->
+<section class="flex gap-2 px-margin-edge py-3 overflow-x-auto hide-scrollbar">
+<button class="bg-primary-container/20 text-on-primary-container px-4 py-1.5 rounded-full text-subheadline font-semibold whitespace-nowrap active:scale-95 transition-transform">All</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded-full text-subheadline font-medium whitespace-nowrap active:scale-95 transition-transform">Unread</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded-full text-subheadline font-medium whitespace-nowrap active:scale-95 transition-transform">Favourites</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-1.5 rounded-full text-subheadline font-medium whitespace-nowrap active:scale-95 transition-transform">Groups</button>
+</section>
+<!-- Archived Row -->
+<div class="chat-row flex items-center px-margin-edge py-3 cursor-pointer group">
+<div class="w-14 flex justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">archive</span>
+</div>
+<div class="flex-1 ml-3 flex justify-between items-center">
+<span class="font-headline text-headline text-on-surface">Archived</span>
+<span class="text-primary font-subheadline pr-1">1</span>
+</div>
+</div>
+<div class="chat-separator bg-outline-variant/30"></div>
+<!-- Chat List -->
+<div id="chat-list-container">
+<!-- Pinned Chat -->
+<div class="chat-row flex px-margin-edge py-3 cursor-pointer">
+<div class="relative">
+<img class="w-14 h-14 rounded-full object-cover" data-alt="A portrait of a smiling young woman named Aria with diverse features, soft studio lighting, clear skin, and a friendly expression. She has dark wavy hair and is wearing a simple modern white top. The background is a soft neutral beige, high-fidelity professional photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARxHddzcEYZKgFJAoNta3yUkNrGNCklMfWwxJQT68b7JNHCG3UzL0RsHhdvudGPvfqkqy0S9Q7DoaJonQF2SZPdDhg7llhr1ugoAw3GEHHJ5swdknX5P5eA9Yy7aVixjQxXk5cTRr7eMVAbPM_qCqGEMb6LNwlnEQCwFjz3w1ZRDbc2VyqOrxI-VK3-mt7QVKT-PlDVDPv1EYxX9IQbF6u8MDgQG3zPG_dzgibNhN27CJPvDYQterD"/>
+</div>
+<div class="flex-1 ml-3 flex flex-col justify-center min-w-0">
+<div class="flex justify-between items-baseline">
+<h3 class="font-headline text-headline text-on-surface truncate">Aria</h3>
+<span class="text-caption font-caption text-on-surface-variant">10:45 AM</span>
+</div>
+<div class="flex justify-between items-center mt-0.5">
+<div class="flex items-center gap-1 min-w-0">
+<span class="material-symbols-outlined text-[16px] text-[#34B7F1]" style="font-variation-settings: 'FILL' 1;">done_all</span>
+<p class="text-subheadline font-subheadline text-on-surface-variant truncate">See you soon!</p>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant/40">push_pin</span>
+</div>
+</div>
+</div>
+<div class="chat-separator bg-outline-variant/30"></div>
+<!-- Active Chat with Unread -->
+<div class="chat-row flex px-margin-edge py-3 cursor-pointer">
+<div class="relative">
+<img class="w-14 h-14 rounded-full object-cover" data-alt="A profile photo of a mature Indian man with a kind smile, short salt-and-pepper hair, and stylish spectacles. He's wearing a light blue linen shirt. The image has a warm, natural daylight glow and a blurred garden background, looking like a real personal contact photo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlNO-KpoLtF33bpLewLaf-BAMXjsm2VHetbplKbPW4nCwGwPKGiifCEMXe1d73uNQXE6tGKKxwy2rf7qxLzF9YzmyuafzF3SFdqBpESkSSF96svT0Kx7YKnj1uvd_PbvZtacjDd-u-UvKQZGZsz1aQPU0rBOHuJ0JExXqH23jDnIiKpsH2x5foPbO_Twfp9qRSlcXjJZKBZGUQyEM3MVX92-emSDcJL1Cx_rt4D91f-9VEsL__3FCE"/>
+</div>
+<div class="flex-1 ml-3 flex flex-col justify-center min-w-0">
+<div class="flex justify-between items-baseline">
+<h3 class="font-headline text-headline text-on-surface truncate">Rahul Sharma</h3>
+<span class="text-caption font-caption text-primary font-semibold">10:32 AM</span>
+</div>
+<div class="flex justify-between items-center mt-0.5">
+<p class="text-subheadline font-subheadline text-on-surface-variant truncate">Kahan ho? Reach soon.</p>
+<div class="bg-primary px-2 min-w-[20px] h-5 rounded-full flex items-center justify-center">
+<span class="text-[11px] font-bold text-white">2</span>
+</div>
+</div>
+</div>
+</div>
+<div class="chat-separator bg-outline-variant/30"></div>
+<!-- Group Chat -->
+<div class="chat-row flex px-margin-edge py-3 cursor-pointer">
+<div class="relative w-14 h-14 bg-surface-container-highest rounded-full flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-on-surface-variant text-[32px]">groups</span>
+</div>
+<div class="flex-1 ml-3 flex flex-col justify-center min-w-0">
+<div class="flex justify-between items-baseline">
+<h3 class="font-headline text-headline text-on-surface truncate">College Group 🎓</h3>
+<span class="text-caption font-caption text-on-surface-variant">9:15 AM</span>
+</div>
+<div class="flex justify-between items-center mt-0.5">
+<div class="flex items-center gap-1 min-w-0">
+<span class="text-subheadline font-subheadline text-on-surface truncate shrink-0">Sneha:</span>
+<p class="text-subheadline font-subheadline text-on-surface-variant truncate">Video send kar de fast</p>
+</div>
+</div>
+</div>
+</div>
+<div class="chat-separator bg-outline-variant/30"></div>
+<!-- Family Contact -->
+<div class="chat-row flex px-margin-edge py-3 cursor-pointer">
+<div class="relative">
+<img class="w-14 h-14 rounded-full object-cover" data-alt="A warm, vibrant close-up of a middle-aged woman with a radiant, motherly smile. She has expressive eyes and is wearing traditional Indian earrings. The lighting is soft and golden, suggesting a cozy home setting with a shallow depth of field focusing on her face. High-resolution digital portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWxiTWioKQDiBnNXhMp2JFER5Nm9LIYK1aAq5x9gT6KE9Pm6uo3_HBYUi4NtlYANBc621lVGCgiQpzLR1tuCPLye_X_bYFx-Eovy6eJAP3tOiTg8oh9VHLBsk6Co7Zefi05vs7QWIiB0D-3u3TOadbTc1jpOcpNVLdRiYmUMF9yIPGD_rp0fuMdi4o2mnEMhTOSErOZH3vk_fxsjN9jjOrUG46126uMA-bA4tBxw4jS2U6gwmEntLB"/>
+</div>
+<div class="flex-1 ml-3 flex flex-col justify-center min-w-0">
+<div class="flex justify-between items-baseline">
+<h3 class="font-headline text-headline text-on-surface truncate">Mom ❤️</h3>
+<span class="text-caption font-caption text-on-surface-variant">Yesterday</span>
+</div>
+<div class="flex justify-between items-center mt-0.5">
+<div class="flex items-center gap-1 min-w-0">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant/60">done_all</span>
+<p class="text-subheadline font-subheadline text-on-surface-variant truncate">Ok done. Khana kha liya?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="chat-separator bg-outline-variant/30"></div>
+<!-- Another Contact -->
+<div class="chat-row flex px-margin-edge py-3 cursor-pointer">
+<div class="relative">
+<img class="w-14 h-14 rounded-full object-cover" data-alt="Portrait of a young creative professional man with a neat beard and stylish glasses. He's in a modern coworking space with blurred industrial elements in the background. Natural window light highlights his face. The overall aesthetic is clean, corporate yet modern, in a light-mode color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiy0s90jie2RjpB5QxVQU9g1Uc4Eyyeo49jSAHJa7XR_w2Qog8QuKs9B-Mdb1k1sog4xJorJn-MsGixM_p_MJIHtjaND61elUBzoTwlSI2-DmAGDFo6beQL24W4VetCMM1fvuTBN_bqWOs1-6TJjGi4t4thbJHN7pnW1cKgZfFwUX0QKQ1vY1QCnFK0pWs4UgLktaNHmKmhJFUiF0cUqi_aIMM-WWu20vCRuU88O5ycB14phq6o2YG"/>
+</div>
+<div class="flex-1 ml-3 flex flex-col justify-center min-w-0">
+<div class="flex justify-between items-baseline">
+<h3 class="font-headline text-headline text-on-surface truncate">Karan</h3>
+<span class="text-caption font-caption text-on-surface-variant">Yesterday</span>
+</div>
+<div class="flex justify-between items-center mt-0.5">
+<div class="flex items-center gap-1 min-w-0">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant/60">done</span>
+<p class="text-subheadline font-subheadline text-on-surface-variant truncate">I'll check the project files by evening.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="chat-separator bg-outline-variant/30"></div>
+<!-- More rows generated via script to fulfill 15+ -->
+<div id="dynamic-chats"></div>
+</div>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center pt-2 pb-safe px-margin-edge bg-surface/80 backdrop-blur-xl border-t-[0.5px] border-outline-variant/30 ios-safe-bottom">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="update">update</span>
+<span class="font-caption text-caption">Updates</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+<span class="font-caption text-caption">Calls</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-caption text-caption">Communities</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="chat" style="font-variation-settings: 'FILL' 1;">chat</span>
+<span class="font-caption text-caption">Chats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-caption text-caption">Settings</span>
+</a>
+</nav>
+<!-- Home Indicator -->
+<div class="fixed bottom-1 left-1/2 -translate-x-1/2 w-[134px] h-[5px] bg-on-surface/20 rounded-full z-[60]"></div>
+<script>
+        // Scroll header logic
+        window.addEventListener('scroll', () => {
+            const header = document.body;
+            if (window.scrollY > 44) {
+                header.classList.add('scrolling');
+            } else {
+                header.classList.remove('scrolling');
+            }
+        });
+
+        // Dynamic generation of chat rows for list density
+        const names = ["Abhishek", "Ishaan", "Zoya", "Rohan", "Priya", "Arjun", "Neha", "Vikram", "Sanya", "Kabir"];
+        const messages = ["Dinner tonight?", "Meeting shifted to 4 PM", "Hahaha check this meme", "Send the doc", "Where are you?", "The office is closed", "Call me when free", "Got it!", "Payment received", "Good night!"];
+        const times = ["Tuesday", "Tuesday", "Monday", "Sunday", "Sunday", "Saturday", "12/10/23", "11/10/23", "10/10/23", "08/10/23"];
+        
+        const container = document.getElementById('dynamic-chats');
+        let html = '';
+        
+        for(let i=0; i<10; i++) {
+            const name = names[i];
+            const msg = messages[i];
+            const time = times[i];
+            const hasUnread = i === 4;
+            const isRead = i % 3 === 0;
+
+            html += `
+            <div class="chat-row flex px-margin-edge py-3 cursor-pointer">
+                <div class="relative">
+                    <img src="placeholder" data-alt="A candid profile photo of ${name}, appearing to be a real social media avatar. Natural lighting, casual background, high-quality digital photography in a contemporary style matching the app's clean aesthetic." class="w-14 h-14 rounded-full object-cover">
+                </div>
+                <div class="flex-1 ml-3 flex flex-col justify-center min-w-0">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-headline text-headline text-on-surface truncate">${name}</h3>
+                        <span class="text-caption font-caption ${hasUnread ? 'text-primary font-semibold' : 'text-on-surface-variant'}">${time}</span>
+                    </div>
+                    <div class="flex justify-between items-center mt-0.5">
+                        <div class="flex items-center gap-1 min-w-0">
+                            ${isRead ? '<span class="material-symbols-outlined text-[16px] text-[#34B7F1]" style="font-variation-settings: \'FILL\' 1;">done_all</span>' : '<span class="material-symbols-outlined text-[16px] text-on-surface-variant/60">done</span>'}
+                            <p class="text-subheadline font-subheadline text-on-surface-variant truncate">${msg}</p>
+                        </div>
+                        ${hasUnread ? '<div class="bg-primary px-2 min-w-[20px] h-5 rounded-full flex items-center justify-center"><span class="text-[11px] font-bold text-white">1</span></div>' : ''}
+                    </div>
+                </div>
+            </div>
+            <div class="chat-separator bg-outline-variant/30"></div>
+            `;
+        }
+        container.innerHTML = html;
+    </script>
+</body></html>

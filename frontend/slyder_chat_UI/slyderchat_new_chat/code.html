@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>SlyderChat - New Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ffb59b",
+                    "on-surface-variant": "#3c4a3d",
+                    "on-primary-fixed-variant": "#005322",
+                    "primary-fixed": "#66ff8e",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#78351b",
+                    "surface-variant": "#e3e2e7",
+                    "surface-container-highest": "#e3e2e7",
+                    "primary-container": "#25d366",
+                    "inverse-surface": "#2f3034",
+                    "surface-bright": "#faf9fe",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#226e63",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#eeedf3",
+                    "secondary-fixed-dim": "#8cd4c7",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#006d2f",
+                    "outline": "#6c7b6b",
+                    "on-secondary-fixed": "#00201c",
+                    "on-tertiary-fixed-variant": "#763319",
+                    "on-surface": "#1a1b1f",
+                    "on-primary-fixed": "#002109",
+                    "secondary": "#1c695f",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#a5ede0",
+                    "on-tertiary-fixed": "#380d00",
+                    "on-background": "#1a1b1f",
+                    "surface-dim": "#dad9df",
+                    "tertiary-container": "#ffa07e",
+                    "tertiary": "#93492e",
+                    "outline-variant": "#bbcbb9",
+                    "on-secondary-fixed-variant": "#005047",
+                    "on-primary-container": "#005523",
+                    "tertiary-fixed": "#ffdbcf",
+                    "surface-container-low": "#f4f3f8",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e9e7ed",
+                    "surface": "#faf9fe",
+                    "inverse-primary": "#3de273",
+                    "inverse-on-surface": "#f1f0f5",
+                    "secondary-fixed": "#a8f0e3",
+                    "background": "#faf9fe",
+                    "primary-fixed-dim": "#3de273",
+                    "primary": "#006d2f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-edge": "16px",
+                    "header-height-collapsed": "44px",
+                    "stack-compact": "4px",
+                    "inset-card": "12px",
+                    "header-height-expanded": "96px",
+                    "gutter-list": "12px",
+                    "stack-default": "8px"
+            },
+            "fontFamily": {
+                    "label-bold": ["Inter"],
+                    "body": ["Inter"],
+                    "headline": ["Inter"],
+                    "subheadline": ["Inter"],
+                    "large-title": ["Inter"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                    "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}],
+                    "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}],
+                    "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}],
+                    "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf9fe;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .ios-separator {
+            height: 0.5px;
+            background-color: rgba(60, 74, 61, 0.2);
+            margin-left: 64px; /* Avatar width + gutter */
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .safe-pb {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .safe-pt {
+            padding-top: env(safe-area-inset-top);
+        }
+        /* Custom scrollbar for clean UI */
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+        .alphabet-index {
+            position: fixed;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 60;
+        }
+        .alphabet-index span {
+            font-size: 10px;
+            font-weight: 600;
+            color: #006d2f;
+            padding: 1px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface select-none">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-surface/80 ios-blur safe-pt border-b border-outline-variant/30">
+<div class="flex items-center justify-between px-margin-edge h-header-height-collapsed">
+<div class="w-20"></div>
+<h1 class="font-headline text-headline text-on-surface">New Chat</h1>
+<button class="w-20 text-right font-body text-body text-primary active:opacity-50 transition-opacity">
+                Cancel
+            </button>
+</div>
+<!-- Search Bar -->
+<div class="px-margin-edge pb-stack-default">
+<div class="relative group">
+<div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full h-9 bg-surface-container-highest border-none rounded-lg pl-10 pr-4 font-body text-subheadline focus:ring-2 focus:ring-primary/20 outline-none placeholder:text-on-surface-variant/60" placeholder="Search" type="text"/>
+</div>
+</div>
+</header>
+<main class="pb-safe">
+<!-- Action List Items -->
+<section class="bg-surface mt-stack-default">
+<div class="flex flex-col">
+<!-- New Group -->
+<button class="flex items-center px-margin-edge py-3 active:bg-surface-container transition-colors">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary mr-gutter-list">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<span class="font-body text-body">New Group</span>
+</button>
+<div class="ios-separator !ml-margin-edge"></div>
+<!-- New Contact -->
+<button class="flex items-center px-margin-edge py-3 active:bg-surface-container transition-colors">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary mr-gutter-list">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<span class="font-body text-body">New Contact</span>
+</button>
+<div class="ios-separator !ml-margin-edge"></div>
+<!-- New Community -->
+<button class="flex items-center px-margin-edge py-3 active:bg-surface-container transition-colors">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary mr-gutter-list">
+<span class="material-symbols-outlined">hub</span>
+</div>
+<span class="font-body text-body">New Community</span>
+</button>
+</div>
+</section>
+<!-- Section Header -->
+<div class="bg-surface-container-low px-margin-edge py-2">
+<h2 class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Contacts on SlyderChat</h2>
+</div>
+<!-- Contacts List -->
+<section class="bg-surface">
+<!-- Aria -->
+<div class="flex flex-col">
+<button class="flex items-center px-margin-edge py-3 active:bg-surface-container transition-colors text-left">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-gutter-list flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young woman named Aria with a friendly smile, soft studio lighting, professional corporate aesthetic, minimalist white background. Her style is clean and modern, reflecting a high-end tech environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7Bm4_OO_vIln2y0C3awsEnuToNeEkk7C69kokhxMyqquQpQfgVbfJqr0xMvcaws7yPUvIDBc8dZANq7sYNMicLz68psx6DFkkBp7bnBoVDSZceBFf8S_uMNN2TFfcaaovDq0y64zNdh8KgsR5AXOEPtZBoPQlRCjo7T8HdPLSffHqQbtxgycWbcxKcexf-ihsDwORsUBZJV9UKQwlS_VVE8wjmPDOn5HL-U5atycaT3fsEzO2XXMC"/>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="font-headline text-headline truncate">Aria</span>
+<span class="font-subheadline text-subheadline text-on-surface-variant truncate">Hey there! I am using SlyderChat</span>
+</div>
+</button>
+<div class="ios-separator"></div>
+<!-- Arjun -->
+<button class="flex items-center px-margin-edge py-3 active:bg-surface-container transition-colors text-left">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-gutter-list flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A profile photo of Arjun, a young professional man with short dark hair and a warm expression. Bright, natural daylight illumination, corporate portrait style, background is a soft-focus modern office setting. Sharp focus on eyes, clean and efficient mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHNjmB_qSpxcWdy4XB2pZCnYMqlDuWpD3S62kpCmYl2RB9dk4zUVK5On7INUPzzOHdRnx5QaHbSRC12M7rD0nBJVUzog6gTpZijd7u0b22CylEQAn3sJEpsALQPZXZCf5jC4xenT_vdGFhwf9UN0r6F77fUfYbb7ifnWeLOHrEAcizkrDgG0oujIrv9QhE1lSbFSG_Y4KRyEqBKBgoSxQnm19tgtn6i23_LuDrUemcTVsdjiKj4JVN"/>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="font-headline text-headline truncate">Arjun</span>
+<span class="font-subheadline text-subheadline text-on-surface-variant truncate">Hey there! I am using SlyderChat</span>
+</div>
+</button>
+<div class="ios-separator"></div>
+<!-- Elena -->
+<button class="flex items-center px-margin-edge py-3 active:bg-surface-container transition-colors text-left">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-gutter-list flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A studio portrait of Elena, showing a professional and welcoming look. High-fidelity digital photography, clean corporate aesthetics, soft pastel background colors. The lighting is balanced and airy, emphasizing reliability and modern elegance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_Lod_8p6Nve4gxMe3-_YhpuoTldlCslm23Gaud8d-cmg4WodXWsIwIVnVcO9jqR0UnezquL1u38jLfYjwY4atxL19IrZYzC5h-S9BC7fPk0rSUpTc3dJpqr54bq8z0YL7b2092His5xrO-twLqV8mhDPKWc3yo8wtAf-IzTANM7ZPlE--Fgh9cnxoDkZYZ66bClbGg6KV9mRQ-d-0MLTJYOkywRhkRgicbybA2SR71pAsMiKdLgJJ"/>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="font-headline text-headline truncate">Elena</span>
+<span class="font-subheadline text-subheadline text-on-surface-variant truncate">Hey there! I am using SlyderChat</span>
+</div>
+</button>
+<div class="ios-separator"></div>
+<!-- Julian -->
+<button class="flex items-center px-margin-edge py-3 active:bg-surface-container transition-colors text-left">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-gutter-list flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A crisp profile picture of Julian, a stylish professional with a clean-cut appearance. Minimalist modern lighting, high-contrast black and white photography, corporate yet creative mood. The composition is centered and focused, representing efficiency and directness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrXM6LlGO_CNI5yVmQUpbeRRSUtkJuWm-xDU1m-sxJm6VUxYUXOAT4od129xpUbZqnCc3FtepxGA1n5r5uVunIs027oBr6LGyyOGMeJYSO20Q6rK6mZeMt2FTvpKe0pls2H5mNOvno75KPo8IAQ1yljiyXGj72vSPGlh0XdndMXCWDVeXek8lDx08l8FQVk3-5RXEJ3KJXKpxJQyn5SIPlNmkKJMJz5_D4KkXzZ0pKJ4A-M2mp0f5w"/>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="font-headline text-headline truncate">Julian</span>
+<span class="font-subheadline text-subheadline text-on-surface-variant truncate">Hey there! I am using SlyderChat</span>
+</div>
+</button>
+<div class="ios-separator"></div>
+<!-- Michael -->
+<button class="flex items-center px-margin-edge py-3 active:bg-surface-container transition-colors text-left">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-gutter-list flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A detailed headshot of Michael, reflecting a mature and trustworthy professional. Warm, even lighting, subtle bokeh background of a contemporary architectural space. The style is classic corporate, clean lines, and a palette of professional blues and whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcydD0r6wEOE5LzejSYCn-iV3PDkMDEZr7MZfwclOZ2KUdwAaMSX2xCDs54v2gdq4c5_E3WEMkdWajkU6YwRlNVJGmeX8XLTTjZafFNXlpDLkxvoLoMy2bqy4X-vQ4Kli73yxpVWOmQBd_anbgyTkvH4lxEEL8arDokxAO-x-bBgdmtcnE99HlKg5om2kNyJ66WowGezKHuhj4ejcFxp3IWslohqJgySH7I0aMLSB6-YB2RMCqFP8q"/>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="font-headline text-headline truncate">Michael</span>
+<span class="font-subheadline text-subheadline text-on-surface-variant truncate">Hey there! I am using SlyderChat</span>
+</div>
+</button>
+<div class="ios-separator"></div>
+<!-- Sarah -->
+<button class="flex items-center px-margin-edge py-3 active:bg-surface-container transition-colors text-left">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-gutter-list flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A portrait of Sarah, a confident and approachable tech professional. High-key lighting for a bright, optimistic light-mode feel. Background is a very light grey minimalist space. Her expression is calm and capable, embodying the seamless user experience of the app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0phamJd9UTWqVwf3HQGSdCu2AQaq3Q2NjAAQHBgIYFUMjWH42NRmy7p7__Wvb3sDtZVCRKTlKQ83rvoqTT3XNJh66drGAd3XXYC0IL2FDVMYSZVGlgjBzk0PZNWxWoZWLWLJHne2S4ASDgNrWtiYRRPkPbFONa7jSPOqg2jGdTcLLmATy9a4dbUEPlIspYeOzKG0Jbx-TgaBYVm7228P9fPGJRKI3TX5CehVNxPbSaXLzVPbhu8PJ"/>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="font-headline text-headline truncate">Sarah</span>
+<span class="font-subheadline text-subheadline text-on-surface-variant truncate">Hey there! I am using SlyderChat</span>
+</div>
+</button>
+</div>
+</section>
+<!-- More Contacts Section Placeholder -->
+<div class="bg-surface-container-low px-margin-edge py-2">
+<h2 class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Other Contacts</h2>
+</div>
+<div class="h-64 bg-surface flex flex-col items-center justify-center text-on-surface-variant/40">
+<span class="material-symbols-outlined text-4xl mb-2">person_search</span>
+<p class="font-subheadline text-subheadline">Keep scrolling for more</p>
+</div>
+</main>
+<!-- Right Side Alphabetical Index -->
+<aside class="alphabet-index">
+<span>#</span>
+<span>A</span>
+<span>B</span>
+<span>C</span>
+<span>D</span>
+<span>E</span>
+<span>F</span>
+<span>G</span>
+<span>H</span>
+<span>I</span>
+<span>J</span>
+<span>K</span>
+<span>L</span>
+<span>M</span>
+<span>N</span>
+<span>O</span>
+<span>P</span>
+<span>Q</span>
+<span>R</span>
+<span>S</span>
+<span>T</span>
+<span>U</span>
+<span>V</span>
+<span>W</span>
+<span>X</span>
+<span>Y</span>
+<span>Z</span>
+</aside>
+<script>
+        // Micro-interaction for alphabet index highlighting
+        const indexChars = document.querySelectorAll('.alphabet-index span');
+        indexChars.forEach(char => {
+            char.addEventListener('touchstart', (e) => {
+                char.style.opacity = '0.5';
+            });
+            char.addEventListener('touchend', (e) => {
+                char.style.opacity = '1';
+            });
+        });
+
+        // Search focus interaction
+        const searchInput = document.querySelector('input');
+        searchInput.addEventListener('focus', () => {
+            // Logic for showing 'Cancel' next to search or expanding overlay
+        });
+    </script>
+</body></html>

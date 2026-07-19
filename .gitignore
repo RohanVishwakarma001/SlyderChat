@@ -1,0 +1,9 @@
+# This is a monorepo: see frontend/.gitignore and backend/.gitignore for
+# project-specific rules (node_modules, Expo build output, Maven target, etc).
+
+# macOS
+.DS_Store
+*.pem
+
+# local env files
+.env*.local

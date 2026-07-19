@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Chat with Aria</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --ios-blur: blur(20px);
+            --chat-bg: #efe7de;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .ios-blur {
+            backdrop-filter: var(--ios-blur);
+            -webkit-backdrop-filter: var(--ios-blur);
+        }
+        .chat-wallpaper {
+            background-color: var(--chat-bg);
+            background-image: url("https://www.transparenttextures.com/patterns/cubes.png"); /* Subtle pattern overlay */
+            background-blend-mode: overlay;
+        }
+        /* Message Tail Logic */
+        .bubble-out::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: -8px;
+            width: 15px;
+            height: 15px;
+            background: #25d366; /* Matching primary-container */
+            clip-path: polygon(0 0, 0% 100%, 100% 100%);
+        }
+        .bubble-in::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -8px;
+            width: 15px;
+            height: 15px;
+            background: #ffffff; /* Matching surface-container-lowest */
+            clip-path: polygon(100% 0, 0 100%, 100% 100%);
+        }
+        .safe-pb {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .safe-pt {
+            padding-top: env(safe-area-inset-top);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1a1b1f",
+                        "surface-dim": "#dad9df",
+                        "outline-variant": "#bbcbb9",
+                        "on-primary": "#ffffff",
+                        "background": "#faf9fe",
+                        "tertiary-container": "#ffa07e",
+                        "surface-variant": "#e3e2e7",
+                        "primary-fixed": "#66ff8e",
+                        "secondary-container": "#a5ede0",
+                        "primary": "#006d2f",
+                        "outline": "#6c7b6b",
+                        "surface-bright": "#faf9fe",
+                        "surface-container": "#eeedf3",
+                        "surface-tint": "#006d2f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#005322",
+                        "on-primary-fixed": "#002109",
+                        "on-tertiary-container": "#78351b",
+                        "surface-container-low": "#f4f3f8",
+                        "on-background": "#1a1b1f",
+                        "on-tertiary-fixed-variant": "#763319",
+                        "on-secondary-fixed-variant": "#005047",
+                        "on-primary-container": "#005523",
+                        "secondary-fixed-dim": "#8cd4c7",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#a8f0e3",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#3de273",
+                        "surface-container-highest": "#e3e2e7",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#3de273",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#226e63",
+                        "tertiary": "#93492e",
+                        "secondary": "#1c695f",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "tertiary-fixed": "#ffdbcf",
+                        "surface-container-high": "#e9e7ed",
+                        "primary-container": "#25d366",
+                        "inverse-surface": "#2f3034",
+                        "on-secondary-fixed": "#00201c",
+                        "on-surface-variant": "#3c4a3d",
+                        "surface": "#faf9fe",
+                        "inverse-on-surface": "#f1f0f5",
+                        "on-tertiary-fixed": "#380d00"
+                    },
+                    "spacing": {
+                        "header-height-expanded": "96px",
+                        "stack-compact": "4px",
+                        "margin-edge": "16px",
+                        "inset-card": "12px",
+                        "header-height-collapsed": "44px",
+                        "stack-default": "8px",
+                        "gutter-list": "12px"
+                    },
+                    "fontFamily": {
+                        "large-title": ["Inter"],
+                        "headline": ["Inter"],
+                        "subheadline": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "body": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                        "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}],
+                        "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}],
+                        "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                        "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface flex flex-col h-screen overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 ios-blur border-b-[0.5px] border-outline-variant/30 flex flex-col px-4 pt-safe pb-2">
+<div class="h-11 flex items-center justify-between">
+<!-- Leading: Back & Profile -->
+<div class="flex items-center gap-1 active:opacity-70 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-primary text-[28px]">chevron_left</span>
+<div class="flex items-center gap-2">
+<div class="w-9 h-9 rounded-full overflow-hidden bg-surface-container-high border-[0.5px] border-outline-variant/20">
+<img class="w-full h-full object-cover" data-alt="A professional and warm close-up portrait of a young woman with a friendly expression, soft lighting, and a minimalist modern office background. She has a natural look, styled in a clean corporate-modern aesthetic with soft focus on the background. The lighting is bright and airy, consistent with a premium iOS interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDANK4brBmwNt9MPS50En6tFzcsnH-qHXxm34-NN-rqlWWqzDqBiSyzwbt9SzL8dj7YYuGUyvAooGws4YxcbUSZGscL2M-HouTslwE35Qo9TO0mLEx7NfEo7-4iofwHqM8ScyxwjhLd17QnCuEiGmeXsGoyqK7r7bbiR2YEcG2GAnNc4n-2KZifpFNRLscA9J53u47qGk8cpQXq5OC4sq2iyy52WNVgr2xs761K7hFbP0B13hSArsXe"/>
+</div>
+<div class="flex flex-col">
+<span class="font-headline text-headline leading-tight">Aria</span>
+<span class="text-[11px] text-primary font-medium">online</span>
+</div>
+</div>
+</div>
+<!-- Trailing: Actions -->
+<div class="flex items-center gap-5">
+<button class="active:opacity-50 transition-opacity">
+<span class="material-symbols-outlined text-primary text-[24px]">videocam</span>
+</button>
+<button class="active:opacity-50 transition-opacity">
+<span class="material-symbols-outlined text-primary text-[22px]">call</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Chat Canvas -->
+<main class="flex-1 overflow-y-auto chat-wallpaper pt-[calc(env(safe-area-inset-top)+54px)] pb-24 px-4 space-y-4">
+<!-- Date Stamp -->
+<div class="flex justify-center my-4">
+<span class="bg-surface-container-low/60 ios-blur px-3 py-1 rounded-lg text-[11px] font-semibold text-outline uppercase tracking-wider">Today</span>
+</div>
+<!-- Incoming Message -->
+<div class="flex flex-col items-start max-w-[80%] relative">
+<div class="bg-surface-container-lowest text-on-surface p-3 rounded-2xl rounded-bl-none relative bubble-in shadow-sm">
+<p class="font-body text-body">Hey! Did you see the new UI designs for the messaging app? They look incredibly clean.</p>
+<div class="flex justify-end items-center mt-1 gap-1">
+<span class="text-[10px] text-outline">09:41 AM</span>
+</div>
+</div>
+</div>
+<!-- Outgoing Message -->
+<div class="flex flex-col items-end ml-auto max-w-[80%] relative">
+<div class="bg-primary-container text-on-primary-container p-3 rounded-2xl rounded-br-none relative bubble-out shadow-sm">
+<p class="font-body text-body">I just checked them out. The iOS 17 style blurs are perfection. 🤌</p>
+<div class="flex justify-end items-center mt-1 gap-1">
+<span class="text-[10px] text-on-primary-container/70">09:42 AM</span>
+<span class="material-symbols-outlined text-[14px] text-[#34B7F1]" style="font-variation-settings: 'FILL' 1;">done_all</span>
+</div>
+</div>
+</div>
+<!-- Incoming Message -->
+<div class="flex flex-col items-start max-w-[80%] relative">
+<div class="bg-surface-container-lowest text-on-surface p-3 rounded-2xl rounded-bl-none relative bubble-in shadow-sm">
+<p class="font-body text-body">Exactly. Are we still on for the review call at 2 PM?</p>
+<div class="flex justify-end items-center mt-1 gap-1">
+<span class="text-[10px] text-outline">09:43 AM</span>
+</div>
+</div>
+</div>
+<!-- Outgoing Message -->
+<div class="flex flex-col items-end ml-auto max-w-[80%] relative">
+<div class="bg-primary-container text-on-primary-container p-3 rounded-2xl rounded-br-none relative bubble-out shadow-sm">
+<p class="font-body text-body">Yes, absolutely. I'll share the prototypes then. See you!</p>
+<div class="flex justify-end items-center mt-1 gap-1">
+<span class="text-[10px] text-on-primary-container/70">09:45 AM</span>
+<span class="material-symbols-outlined text-[14px] text-[#34B7F1]" style="font-variation-settings: 'FILL' 1;">done_all</span>
+</div>
+</div>
+</div>
+<!-- Dynamic Typing Indicator (Simulated) -->
+<div class="hidden flex items-center gap-2 px-2 py-1 bg-surface-container-lowest/50 rounded-full w-fit" id="typing-indicator">
+<div class="w-1.5 h-1.5 bg-outline rounded-full animate-bounce"></div>
+<div class="w-1.5 h-1.5 bg-outline rounded-full animate-bounce delay-75"></div>
+<div class="w-1.5 h-1.5 bg-outline rounded-full animate-bounce delay-150"></div>
+</div>
+</main>
+<!-- Composer Bar -->
+<footer class="fixed bottom-0 w-full bg-surface-container-low/90 ios-blur safe-pb z-50">
+<div class="flex items-end gap-3 px-3 py-2">
+<!-- Add Button -->
+<button class="mb-1 p-1 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-primary text-[28px]">add</span>
+</button>
+<!-- Text Input Container -->
+<div class="flex-1 flex items-center bg-surface-container-lowest border-[0.5px] border-outline-variant/40 rounded-3xl px-3 py-1.5 min-h-[36px]">
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 text-[16px] resize-none py-1 leading-tight max-h-32" id="chat-input" placeholder="Message" rows="1"></textarea>
+<button class="ml-2 mb-0.5 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-primary text-[22px]">sticky_note_2</span>
+</button>
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-3 mb-1" id="dynamic-actions">
+<button class="active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-primary text-[26px]">photo_camera</span>
+</button>
+<button class="active:scale-90 transition-transform" id="action-btn">
+<span class="material-symbols-outlined text-primary text-[26px]">mic</span>
+</button>
+</div>
+</div>
+</footer>
+<script>
+        const input = document.getElementById('chat-input');
+        const actionBtn = document.getElementById('action-btn');
+        const dynamicActions = document.getElementById('dynamic-actions');
+
+        input.addEventListener('input', function() {
+            // Auto-resize height
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+
+            // Swap Mic for Send
+            if (this.value.trim().length > 0) {
+                actionBtn.innerHTML = '<span class="material-symbols-outlined text-white bg-primary p-1 rounded-full text-[20px]" style="font-variation-settings: \'FILL\' 1;">arrow_upward</span>';
+            } else {
+                actionBtn.innerHTML = '<span class="material-symbols-outlined text-primary text-[26px]">mic</span>';
+            }
+        });
+
+        // Simple scroll to bottom on load
+        window.onload = () => {
+            const main = document.querySelector('main');
+            main.scrollTop = main.scrollHeight;
+        };
+
+        // Micro-interaction: Typing simulation
+        setTimeout(() => {
+            document.getElementById('typing-indicator').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('typing-indicator').classList.add('hidden');
+            }, 3000);
+        }, 1500);
+    </script>
+</body></html>

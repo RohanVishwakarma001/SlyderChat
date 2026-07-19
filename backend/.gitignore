@@ -1,0 +1,27 @@
+target/
+*.class
+
+# Contains real DB/Cloudinary/JWT secrets locally — never commit this.
+# See application.yml.example for the placeholder version.
+src/main/resources/application.yml
+.mvn/
+mvnw
+mvnw.cmd
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.claude
+### VS Code ###
+.vscode/

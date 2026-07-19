@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>SlyderChat - OTP Verification</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1a1b1f",
+                        "surface-container": "#eeedf3",
+                        "tertiary-container": "#ffa07e",
+                        "surface-bright": "#faf9fe",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#005047",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#380d00",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#25d366",
+                        "primary": "#006d2f",
+                        "tertiary-fixed": "#ffdbcf",
+                        "on-primary-fixed": "#002109",
+                        "on-primary-container": "#005523",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#93492e",
+                        "surface": "#faf9fe",
+                        "secondary-fixed-dim": "#8cd4c7",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "on-tertiary-container": "#78351b",
+                        "on-secondary-fixed": "#00201c",
+                        "background": "#faf9fe",
+                        "primary-fixed": "#66ff8e",
+                        "surface-container-highest": "#e3e2e7",
+                        "secondary": "#1c695f",
+                        "outline-variant": "#bbcbb9",
+                        "on-secondary-container": "#226e63",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f4f3f8",
+                        "on-tertiary-fixed-variant": "#763319",
+                        "on-surface-variant": "#3c4a3d",
+                        "on-error": "#ffffff",
+                        "outline": "#6c7b6b",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1a1b1f",
+                        "secondary-fixed": "#a8f0e3",
+                        "surface-container-high": "#e9e7ed",
+                        "inverse-on-surface": "#f1f0f5",
+                        "surface-tint": "#006d2f",
+                        "inverse-surface": "#2f3034",
+                        "surface-variant": "#e3e2e7",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dad9df",
+                        "primary-fixed-dim": "#3de273",
+                        "secondary-container": "#a5ede0",
+                        "on-primary-fixed-variant": "#005322",
+                        "inverse-primary": "#3de273"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter-list": "12px",
+                        "inset-card": "12px",
+                        "stack-compact": "4px",
+                        "stack-default": "8px",
+                        "header-height-expanded": "96px",
+                        "header-height-collapsed": "44px",
+                        "margin-edge": "16px"
+                    },
+                    "fontFamily": {
+                        "body": ["Inter"],
+                        "large-title": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "subheadline": ["Inter"],
+                        "headline": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}],
+                        "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                        "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                        "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}],
+                        "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        .otp-input-dash {
+            width: 32px;
+            height: 2px;
+            background-color: #bbcbb9;
+            margin: 0 4px;
+        }
+        .keypad-button:active {
+            background-color: #d1d1d6;
+        }
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .safe-area-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 w-full z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 flex items-center justify-between px-4 h-11">
+<button class="flex items-center text-primary active:opacity-50 transition-opacity">
+<span class="material-symbols-outlined text-[24px]">chevron_left</span>
+<span class="font-body text-body">Back</span>
+</button>
+<h1 class="font-headline text-headline text-on-surface absolute left-1/2 -translate-x-1/2">Verify Number</h1>
+<div class="w-10"></div> <!-- Spacer for balance -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto px-margin-edge pt-12 flex flex-col items-center text-center">
+<!-- Logo Icon -->
+<div class="w-16 h-16 rounded-2xl bg-primary-container flex items-center justify-center mb-6 shadow-sm">
+<span class="material-symbols-outlined text-on-primary-container text-[40px]" style="font-variation-settings: 'FILL' 1;">chat</span>
+</div>
+<!-- Headline & Instructions -->
+<h2 class="font-large-title text-large-title-mobile text-on-surface mb-2">Verification</h2>
+<p class="font-body text-body text-on-surface-variant max-w-[280px] mb-8">
+            Waiting to automatically detect an SMS sent to <span class="font-headline text-on-surface">+1 (555) 000-0000</span>. <button class="text-primary font-body">Wrong number?</button>
+</p>
+<!-- OTP Input Area -->
+<div class="flex items-center justify-center gap-2 mb-12" id="otp-display">
+<!-- 6 Digit Visual Slots -->
+<div class="flex flex-col items-center">
+<span class="text-[32px] font-medium h-10 w-8 flex items-center justify-center" id="digit-0"></span>
+<div class="otp-input-dash"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-[32px] font-medium h-10 w-8 flex items-center justify-center" id="digit-1"></span>
+<div class="otp-input-dash"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-[32px] font-medium h-10 w-8 flex items-center justify-center" id="digit-2"></span>
+<div class="otp-input-dash"></div>
+</div>
+<span class="mx-2 text-outline-variant">—</span>
+<div class="flex flex-col items-center">
+<span class="text-[32px] font-medium h-10 w-8 flex items-center justify-center" id="digit-3"></span>
+<div class="otp-input-dash"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-[32px] font-medium h-10 w-8 flex items-center justify-center" id="digit-4"></span>
+<div class="otp-input-dash"></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-[32px] font-medium h-10 w-8 flex items-center justify-center" id="digit-5"></span>
+<div class="otp-input-dash"></div>
+</div>
+</div>
+<p class="font-subheadline text-subheadline text-on-surface-variant mb-10">Enter 6-digit code</p>
+<!-- Action Options -->
+<div class="w-full max-w-sm space-y-4 px-4">
+<button class="w-full flex items-center justify-between py-3 border-b border-outline-variant/20 active:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">sms</span>
+<span class="font-body text-body text-on-surface">Resend SMS</span>
+</div>
+<span class="font-body text-body text-on-surface-variant">1:54</span>
+</button>
+<button class="w-full flex items-center justify-between py-3 active:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">call</span>
+<span class="font-body text-body text-on-surface">Call Me</span>
+</div>
+<span class="font-body text-body text-on-surface-variant">in 2:00</span>
+</button>
+</div>
+</main>
+<!-- iOS Styled Number Pad -->
+<section class="bg-[#D1D3D9] pt-1 pb-safe safe-area-bottom w-full mt-auto">
+<div class="grid grid-cols-3 gap-1.5 p-1.5">
+<!-- Row 1 -->
+<button class="keypad-button h-[46px] bg-white rounded-lg flex flex-col items-center justify-center shadow-[0_1px_0_0_rgba(0,0,0,0.3)] transition-colors" onclick="appendDigit('1')">
+<span class="text-[25px] leading-none">1</span>
+<span class="text-[10px] font-bold text-gray-500 opacity-0">.</span>
+</button>
+<button class="keypad-button h-[46px] bg-white rounded-lg flex flex-col items-center justify-center shadow-[0_1px_0_0_rgba(0,0,0,0.3)] transition-colors" onclick="appendDigit('2')">
+<span class="text-[25px] leading-none">2</span>
+<span class="text-[10px] font-bold text-gray-500 uppercase">abc</span>
+</button>
+<button class="keypad-button h-[46px] bg-white rounded-lg flex flex-col items-center justify-center shadow-[0_1px_0_0_rgba(0,0,0,0.3)] transition-colors" onclick="appendDigit('3')">
+<span class="text-[25px] leading-none">3</span>
+<span class="text-[10px] font-bold text-gray-500 uppercase">def</span>
+</button>
+<!-- Row 2 -->
+<button class="keypad-button h-[46px] bg-white rounded-lg flex flex-col items-center justify-center shadow-[0_1px_0_0_rgba(0,0,0,0.3)] transition-colors" onclick="appendDigit('4')">
+<span class="text-[25px] leading-none">4</span>
+<span class="text-[10px] font-bold text-gray-500 uppercase">ghi</span>
+</button>
+<button class="keypad-button h-[46px] bg-white rounded-lg flex flex-col items-center justify-center shadow-[0_1px_0_0_rgba(0,0,0,0.3)] transition-colors" onclick="appendDigit('5')">
+<span class="text-[25px] leading-none">5</span>
+<span class="text-[10px] font-bold text-gray-500 uppercase">jkl</span>
+</button>
+<button class="keypad-button h-[46px] bg-white rounded-lg flex flex-col items-center justify-center shadow-[0_1px_0_0_rgba(0,0,0,0.3)] transition-colors" onclick="appendDigit('6')">
+<span class="text-[25px] leading-none">6</span>
+<span class="text-[10px] font-bold text-gray-500 uppercase">mno</span>
+</button>
+<!-- Row 3 -->
+<button class="keypad-button h-[46px] bg-white rounded-lg flex flex-col items-center justify-center shadow-[0_1px_0_0_rgba(0,0,0,0.3)] transition-colors" onclick="appendDigit('7')">
+<span class="text-[25px] leading-none">7</span>
+<span class="text-[10px] font-bold text-gray-500 uppercase">pqrs</span>
+</button>
+<button class="keypad-button h-[46px] bg-white rounded-lg flex flex-col items-center justify-center shadow-[0_1px_0_0_rgba(0,0,0,0.3)] transition-colors" onclick="appendDigit('8')">
+<span class="text-[25px] leading-none">8</span>
+<span class="text-[10px] font-bold text-gray-500 uppercase">tuv</span>
+</button>
+<button class="keypad-button h-[46px] bg-white rounded-lg flex flex-col items-center justify-center shadow-[0_1px_0_0_rgba(0,0,0,0.3)] transition-colors" onclick="appendDigit('9')">
+<span class="text-[25px] leading-none">9</span>
+<span class="text-[10px] font-bold text-gray-500 uppercase">wxyz</span>
+</button>
+<!-- Row 4 -->
+<div class="h-[46px]"></div>
+<button class="keypad-button h-[46px] bg-white rounded-lg flex items-center justify-center shadow-[0_1px_0_0_rgba(0,0,0,0.3)] transition-colors" onclick="appendDigit('0')">
+<span class="text-[25px]">0</span>
+</button>
+<button class="h-[46px] flex items-center justify-center active:opacity-50 transition-opacity" onclick="removeDigit()">
+<span class="material-symbols-outlined text-[28px] text-on-surface">backspace</span>
+</button>
+</div>
+</section>
+<script>
+        let currentCode = "";
+        const maxCodeLength = 6;
+
+        function updateDisplay() {
+            for (let i = 0; i < maxCodeLength; i++) {
+                const digitEl = document.getElementById(`digit-${i}`);
+                if (i < currentCode.length) {
+                    digitEl.innerText = currentCode[i];
+                    digitEl.classList.remove('cursor-blink', 'border-primary');
+                } else if (i === currentCode.length) {
+                    digitEl.innerText = "";
+                    digitEl.classList.add('cursor-blink');
+                    // Simple visual cue for active slot
+                } else {
+                    digitEl.innerText = "";
+                    digitEl.classList.remove('cursor-blink');
+                }
+            }
+
+            if (currentCode.length === maxCodeLength) {
+                // Simulate verification
+                console.log("Verifying code:", currentCode);
+                // In a real app, trigger API call here
+                setTimeout(() => {
+                    alert("Verifying SlyderChat Code: " + currentCode);
+                    currentCode = "";
+                    updateDisplay();
+                }, 300);
+            }
+        }
+
+        function appendDigit(digit) {
+            if (currentCode.length < maxCodeLength) {
+                currentCode += digit;
+                updateDisplay();
+                // Haptic feedback simulation could go here
+            }
+        }
+
+        function removeDigit() {
+            if (currentCode.length > 0) {
+                currentCode = currentCode.slice(0, -1);
+                updateDisplay();
+            }
+        }
+
+        // Initialize display
+        updateDisplay();
+    </script>
+</body></html>

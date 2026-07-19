@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Privacy Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#bbcbb9",
+                    "inverse-primary": "#3de273",
+                    "tertiary-fixed-dim": "#ffb59b",
+                    "on-secondary-container": "#226e63",
+                    "on-surface-variant": "#3c4a3d",
+                    "secondary-container": "#a5ede0",
+                    "secondary": "#1c695f",
+                    "on-primary-fixed": "#002109",
+                    "tertiary-container": "#ffa07e",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f4f3f8",
+                    "surface-dim": "#dad9df",
+                    "on-secondary-fixed": "#00201c",
+                    "outline": "#6c7b6b",
+                    "background": "#faf9fe",
+                    "on-primary-container": "#005523",
+                    "surface-tint": "#006d2f",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#eeedf3",
+                    "primary-fixed-dim": "#3de273",
+                    "primary": "#006d2f",
+                    "surface-variant": "#e3e2e7",
+                    "surface-container-high": "#e9e7ed",
+                    "secondary-fixed": "#a8f0e3",
+                    "on-tertiary-fixed-variant": "#763319",
+                    "inverse-surface": "#2f3034",
+                    "surface": "#faf9fe",
+                    "on-secondary-fixed-variant": "#005047",
+                    "tertiary-fixed": "#ffdbcf",
+                    "primary-fixed": "#66ff8e",
+                    "on-tertiary-fixed": "#380d00",
+                    "surface-bright": "#faf9fe",
+                    "on-primary-fixed-variant": "#005322",
+                    "error": "#ba1a1a",
+                    "primary-container": "#25d366",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#f1f0f5",
+                    "tertiary": "#93492e",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#e3e2e7",
+                    "secondary-fixed-dim": "#8cd4c7",
+                    "on-tertiary-container": "#78351b",
+                    "on-background": "#1a1b1f",
+                    "on-surface": "#1a1b1f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "inset-card": "12px",
+                    "gutter-list": "12px",
+                    "header-height-collapsed": "44px",
+                    "margin-edge": "16px",
+                    "header-height-expanded": "96px",
+                    "stack-default": "8px",
+                    "stack-compact": "4px"
+            },
+            "fontFamily": {
+                    "large-title": ["Inter"],
+                    "headline": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "caption": ["Inter"],
+                    "subheadline": ["Inter"],
+                    "body": ["Inter"]
+            },
+            "fontSize": {
+                    "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                    "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}],
+                    "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}],
+                    "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}],
+                    "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .ios-list-separator {
+            margin-left: 16px;
+            height: 0.5px;
+        }
+        .safe-area-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .ios-toggle {
+            position: relative;
+            width: 51px;
+            height: 31px;
+            background-color: #e9e9ea;
+            border-radius: 100px;
+            transition: background-color 0.2s;
+            cursor: pointer;
+        }
+        .ios-toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 27px;
+            height: 27px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+        }
+        .ios-toggle.active {
+            background-color: #25d366;
+        }
+        .ios-toggle.active::after {
+            transform: translateX(20px);
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface-container-low text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 w-full z-50 flex items-center justify-between px-margin-edge pt-4 pb-2 bg-surface/80 ios-blur border-b-[0.5px] border-outline-variant/30">
+<button class="flex items-center text-primary active:scale-95 transition-transform duration-100">
+<span class="material-symbols-outlined text-[28px]">chevron_left</span>
+<span class="font-body text-body -ml-1">Settings</span>
+</button>
+<h1 class="absolute left-1/2 -translate-x-1/2 font-headline text-headline text-on-surface">Privacy</h1>
+<div class="w-10"></div> <!-- Spacer for symmetry -->
+</header>
+<main class="pb-32">
+<!-- Header Text Section -->
+<section class="px-margin-edge pt-6 pb-2">
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-wider px-2">Who can see my personal info</p>
+</section>
+<!-- Group 1: Visibility -->
+<section class="bg-surface mx-4 rounded-xl overflow-hidden border-[0.5px] border-outline-variant/20">
+<div class="flex items-center justify-between px-4 py-3 active:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex flex-col">
+<span class="font-body text-body">Last Seen &amp; Online</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-subheadline text-subheadline text-on-surface-variant">Everyone</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+<div class="ios-list-separator bg-outline-variant/30"></div>
+<div class="flex items-center justify-between px-4 py-3 active:bg-surface-container-high transition-colors cursor-pointer">
+<div class="flex flex-col">
+<span class="font-body text-body">Profile Photo</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-subheadline text-subheadline text-on-surface-variant">Everyone</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+<div class="ios-list-separator bg-outline-variant/30"></div>
+<div class="flex items-center justify-between px-4 py-3 active:bg-surface-container-high transition-colors cursor-pointer">
+<div class="flex flex-col">
+<span class="font-body text-body">About</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-subheadline text-subheadline text-on-surface-variant">Everyone</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+<div class="ios-list-separator bg-outline-variant/30"></div>
+<div class="flex items-center justify-between px-4 py-3 active:bg-surface-container-high transition-colors cursor-pointer">
+<div class="flex flex-col">
+<span class="font-body text-body">Groups</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-subheadline text-subheadline text-on-surface-variant">Everyone</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+<div class="ios-list-separator bg-outline-variant/30"></div>
+<div class="flex items-center justify-between px-4 py-3 active:bg-surface-container-high transition-colors cursor-pointer">
+<div class="flex flex-col">
+<span class="font-body text-body">Status</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-subheadline text-subheadline text-on-surface-variant">My Contacts</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Read Receipts Toggle -->
+<section class="mt-8 mx-4 overflow-hidden">
+<div class="bg-surface rounded-xl border-[0.5px] border-outline-variant/20 px-4 py-3 flex items-center justify-between">
+<div class="flex flex-col pr-4">
+<span class="font-body text-body">Read Receipts</span>
+</div>
+<div class="ios-toggle active" onclick="this.classList.toggle('active')"></div>
+</div>
+<p class="px-4 pt-2 font-caption text-caption text-on-surface-variant">If you turn off read receipts, you won't be able to see read receipts from other people. Read receipts are always sent for group chats.</p>
+</section>
+<!-- Group 2: Features -->
+<section class="px-margin-edge pt-8 pb-2">
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-wider px-2">Disappearing Messages</p>
+</section>
+<section class="bg-surface mx-4 rounded-xl overflow-hidden border-[0.5px] border-outline-variant/20">
+<div class="flex items-center justify-between px-4 py-3 active:bg-surface-container-high transition-colors cursor-pointer">
+<div class="flex flex-col">
+<span class="font-body text-body">Default Message Timer</span>
+<span class="font-caption text-caption text-on-surface-variant">Start new chats with disappearing messages</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-subheadline text-subheadline text-on-surface-variant">Off</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Group 3: Security -->
+<section class="px-margin-edge pt-8 pb-2">
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-wider px-2">Security</p>
+</section>
+<section class="bg-surface mx-4 rounded-xl overflow-hidden border-[0.5px] border-outline-variant/20">
+<div class="flex items-center justify-between px-4 py-3 active:bg-surface-container-high transition-colors cursor-pointer">
+<div class="flex flex-col">
+<span class="font-body text-body">Blocked</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-subheadline text-subheadline text-on-surface-variant">0</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+<div class="ios-list-separator bg-outline-variant/30"></div>
+<div class="flex items-center justify-between px-4 py-3 active:bg-surface-container-high transition-colors cursor-pointer">
+<div class="flex flex-col">
+<span class="font-body text-body">Fingerprint Lock</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-subheadline text-subheadline text-on-surface-variant">Disabled</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Bottom Text -->
+<div class="px-8 mt-6 mb-12 text-center">
+<p class="font-caption text-caption text-on-surface-variant leading-relaxed">
+                Privacy is at our core. Your personal messages are protected by end-to-end encryption.
+            </p>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center pt-2 pb-safe px-margin-edge bg-surface/80 ios-blur border-t-[0.5px] border-outline-variant/30">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant opacity-100 active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined">update</span>
+<span class="font-caption text-caption">Updates</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant opacity-100 active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined">call</span>
+<span class="font-caption text-caption">Calls</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant opacity-100 active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-caption text-caption">Communities</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant opacity-100 active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-caption text-caption">Chats</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed opacity-100 active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-caption text-caption">Settings</span>
+</div>
+</nav>
+<!-- Visual Polish: Status Bar Area -->
+<div class="fixed top-0 left-0 w-full h-[env(safe-area-inset-top)] bg-surface/80 ios-blur z-[60]"></div>
+<script>
+        // Micro-interaction for toggle
+        document.querySelectorAll('.ios-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggle.classList.toggle('active');
+            });
+        });
+
+        // List item tap effect enhancement
+        document.querySelectorAll('.active\\:bg-surface-container-high').forEach(item => {
+            item.addEventListener('touchstart', () => {
+                item.style.backgroundColor = 'var(--surface-container-high)';
+            });
+            item.addEventListener('touchend', () => {
+                setTimeout(() => {
+                    item.style.backgroundColor = '';
+                }, 100);
+            });
+        });
+    </script>
+</body></html>

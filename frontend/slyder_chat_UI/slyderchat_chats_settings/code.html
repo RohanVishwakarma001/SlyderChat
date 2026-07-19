@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Chats Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdbcf",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#25d366",
+                    "tertiary": "#93492e",
+                    "background": "#faf9fe",
+                    "surface-container": "#eeedf3",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#3de273",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#8cd4c7",
+                    "outline": "#6c7b6b",
+                    "inverse-on-surface": "#f1f0f5",
+                    "surface-dim": "#dad9df",
+                    "surface-container-low": "#f4f3f8",
+                    "tertiary-fixed-dim": "#ffb59b",
+                    "primary": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#005047",
+                    "secondary": "#1c695f",
+                    "inverse-primary": "#3de273",
+                    "outline-variant": "#bbcbb9",
+                    "on-background": "#1a1b1f",
+                    "on-secondary-fixed": "#00201c",
+                    "on-primary-fixed": "#002109",
+                    "surface-container-highest": "#e3e2e7",
+                    "secondary-container": "#a5ede0",
+                    "on-primary-fixed-variant": "#005322",
+                    "surface-tint": "#006d2f",
+                    "on-secondary-container": "#226e63",
+                    "surface-variant": "#e3e2e7",
+                    "tertiary-container": "#ffa07e",
+                    "surface-container-high": "#e9e7ed",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#a8f0e3",
+                    "on-tertiary-fixed": "#380d00",
+                    "on-surface": "#1a1b1f",
+                    "primary-fixed": "#66ff8e",
+                    "inverse-surface": "#2f3034",
+                    "surface": "#faf9fe",
+                    "on-primary-container": "#005523",
+                    "surface-bright": "#faf9fe",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#78351b",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#763319"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "inset-card": "12px",
+                    "gutter-list": "12px",
+                    "stack-default": "8px",
+                    "header-height-collapsed": "44px",
+                    "stack-compact": "4px",
+                    "header-height-expanded": "96px",
+                    "margin-edge": "16px"
+            },
+            "fontFamily": {
+                    "subheadline": ["Inter"],
+                    "body": ["Inter"],
+                    "large-title": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "headline": ["Inter"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}],
+                    "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}],
+                    "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                    "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                    "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F2F2F7; /* Classic iOS System Gray 6 */
+            -webkit-tap-highlight-color: transparent;
+        }
+        .ios-list-separator {
+            margin-left: 56px;
+        }
+        .toggle-switch {
+            width: 51px;
+            height: 31px;
+            background-color: #E9E9EA;
+            border-radius: 100px;
+            position: relative;
+            transition: background-color 0.2s;
+            cursor: pointer;
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 27px;
+            height: 27px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+        }
+        .toggle-active {
+            background-color: #34C759;
+        }
+        .toggle-active::after {
+            transform: translateX(20px);
+        }
+        .material-symbols-outlined {
+            font-size: 22px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b-[0.5px] border-outline-variant/30 flex flex-col px-margin-edge pt-8 pb-4">
+<div class="flex items-center justify-between mb-2">
+<button class="flex items-center text-primary active:opacity-70 transition-opacity">
+<span class="material-symbols-outlined">chevron_left</span>
+<span class="font-body text-body">Settings</span>
+</button>
+</div>
+<h1 class="font-large-title text-large-title text-on-surface">Chats</h1>
+</header>
+<!-- Main Content Area -->
+<main class="pt-32 pb-32">
+<!-- Section 1: Visuals & Backup -->
+<div class="px-margin-edge mb-stack-default">
+<div class="bg-surface rounded-xl overflow-hidden shadow-sm">
+<!-- Wallpaper -->
+<button class="w-full flex items-center px-4 py-3 active:bg-surface-container-high transition-colors">
+<div class="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center text-white mr-3">
+<span class="material-symbols-outlined">wallpaper</span>
+</div>
+<span class="flex-1 text-left font-body text-body">Wallpaper</span>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<div class="ios-list-separator border-b-[0.5px] border-outline-variant/30"></div>
+<!-- Chat Backup -->
+<button class="w-full flex items-center px-4 py-3 active:bg-surface-container-high transition-colors">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-white mr-3">
+<span class="material-symbols-outlined">cloud_upload</span>
+</div>
+<span class="flex-1 text-left font-body text-body">Chat Backup</span>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Section 2: Save to Camera Roll -->
+<div class="px-margin-edge mb-stack-default mt-6">
+<div class="bg-surface rounded-xl overflow-hidden shadow-sm">
+<div class="w-full flex items-center px-4 py-3">
+<div class="w-8 h-8 rounded-lg bg-orange-400 flex items-center justify-center text-white mr-3">
+<span class="material-symbols-outlined">photo_library</span>
+</div>
+<div class="flex-1">
+<p class="font-body text-body">Save to Camera Roll</p>
+</div>
+<div class="toggle-switch toggle-active" onclick="this.classList.toggle('toggle-active')"></div>
+</div>
+</div>
+<p class="px-4 mt-2 font-caption text-caption text-outline">Automatically save photos and videos you receive to your iPhone's Camera Roll.</p>
+</div>
+<!-- Section 3: Keep Chats Archived -->
+<div class="px-margin-edge mb-stack-default mt-6">
+<div class="bg-surface rounded-xl overflow-hidden shadow-sm">
+<div class="w-full flex items-center px-4 py-3">
+<div class="w-8 h-8 rounded-lg bg-gray-500 flex items-center justify-center text-white mr-3">
+<span class="material-symbols-outlined">archive</span>
+</div>
+<div class="flex-1">
+<p class="font-body text-body">Keep Chats Archived</p>
+</div>
+<div class="toggle-switch" onclick="this.classList.toggle('toggle-active')"></div>
+</div>
+</div>
+<p class="px-4 mt-2 font-caption text-caption text-outline">Archived chats will remain archived when you receive a new message.</p>
+</div>
+<!-- Section 4: Platform Transfer -->
+<div class="px-margin-edge mb-stack-default mt-6">
+<div class="bg-surface rounded-xl overflow-hidden shadow-sm">
+<!-- Move to Android -->
+<button class="w-full flex items-center px-4 py-3 active:bg-surface-container-high transition-colors">
+<div class="w-8 h-8 rounded-lg bg-green-600 flex items-center justify-center text-white mr-3">
+<span class="material-symbols-outlined">android</span>
+</div>
+<span class="flex-1 text-left font-body text-body">Move Chats to Android</span>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<div class="ios-list-separator border-b-[0.5px] border-outline-variant/30"></div>
+<!-- Transfer to iPhone -->
+<button class="w-full flex items-center px-4 py-3 active:bg-surface-container-high transition-colors">
+<div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white mr-3">
+<span class="material-symbols-outlined">smartphone</span>
+</div>
+<span class="flex-1 text-left font-body text-body">Transfer Chats to iPhone</span>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Section 5: Data Management -->
+<div class="px-margin-edge mb-stack-default mt-6">
+<div class="bg-surface rounded-xl overflow-hidden shadow-sm">
+<!-- Export -->
+<button class="w-full flex items-center px-4 py-3 active:bg-surface-container-high transition-colors">
+<span class="flex-1 text-left font-body text-body">Export Chat</span>
+</button>
+<div class="border-b-[0.5px] border-outline-variant/30 ml-4"></div>
+<!-- Archive All -->
+<button class="w-full flex items-center px-4 py-3 active:bg-surface-container-high transition-colors">
+<span class="flex-1 text-left font-body text-body">Archive All Chats</span>
+</button>
+<div class="border-b-[0.5px] border-outline-variant/30 ml-4"></div>
+<!-- Clear All -->
+<button class="w-full flex items-center px-4 py-3 active:bg-surface-container-high transition-colors">
+<span class="flex-1 text-left font-body text-body">Clear All Chats</span>
+</button>
+<div class="border-b-[0.5px] border-outline-variant/30 ml-4"></div>
+<!-- Delete All -->
+<button class="w-full flex items-center px-4 py-3 active:bg-error-container/20 transition-colors">
+<span class="flex-1 text-left font-body text-body text-error">Delete All Chats</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface/80 backdrop-blur-md border-t-[0.5px] border-outline-variant/30 pb-safe">
+<div class="h-[49px] flex items-center justify-around">
+<button class="flex flex-col items-center justify-center text-outline active:scale-90 transition-transform">
+<span class="material-symbols-outlined">circle_notifications</span>
+<span class="font-caption text-caption">Updates</span>
+</button>
+<button class="flex flex-col items-center justify-center text-outline active:scale-90 transition-transform">
+<span class="material-symbols-outlined">call</span>
+<span class="font-caption text-caption">Calls</span>
+</button>
+<button class="flex flex-col items-center justify-center text-outline active:scale-90 transition-transform">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-caption text-caption">Communities</span>
+</button>
+<button class="flex flex-col items-center justify-center text-outline active:scale-90 transition-transform">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-caption text-caption">Chats</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-caption text-caption">Settings</span>
+</button>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for list items
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('touchstart', () => {
+                btn.style.opacity = '0.7';
+            });
+            btn.addEventListener('touchend', () => {
+                btn.style.opacity = '1';
+            });
+        });
+    </script>
+</body></html>

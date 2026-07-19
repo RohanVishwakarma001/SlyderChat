@@ -1,0 +1,77 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------------< com.rohan:chatapp >--------------------------
+[INFO] Building chatapp 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.3.5:run (default-cli) > test-compile @ chatapp >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ chatapp ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ chatapp ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ chatapp ---
+[INFO] skip non existing resourceDirectory D:\SlyderChat\backend\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ chatapp ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.3.5:run (default-cli) < test-compile @ chatapp <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.3.5:run (default-cli) @ chatapp ---
+[INFO] Attaching agents: []
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.5)
+
+2026-07-19T08:11:45.220+05:30  INFO 3984 --- [chatapp] [           main] com.rohan.chatapp.ChatAppApplication     : Starting ChatAppApplication using Java 17.0.19 with PID 3984 (D:\SlyderChat\backend\target\classes started by Rohan Vishwakarma in D:\SlyderChat\backend)
+2026-07-19T08:11:45.221+05:30 DEBUG 3984 --- [chatapp] [           main] com.rohan.chatapp.ChatAppApplication     : Running with Spring Boot v3.3.5, Spring v6.1.14
+2026-07-19T08:11:45.222+05:30  INFO 3984 --- [chatapp] [           main] com.rohan.chatapp.ChatAppApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-07-19T08:11:45.756+05:30  INFO 3984 --- [chatapp] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-19T08:11:45.803+05:30  INFO 3984 --- [chatapp] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 5 JPA repository interfaces.
+2026-07-19T08:11:46.209+05:30  INFO 3984 --- [chatapp] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-19T08:11:46.218+05:30  INFO 3984 --- [chatapp] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-19T08:11:46.218+05:30  INFO 3984 --- [chatapp] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2026-07-19T08:11:46.270+05:30  INFO 3984 --- [chatapp] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-19T08:11:46.271+05:30  INFO 3984 --- [chatapp] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1012 ms
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+2026-07-19T08:11:46.307+05:30 DEBUG 3984 --- [chatapp] [           main] com.rohan.chatapp.auth.JwtAuthFilter     : Filter 'jwtAuthFilter' configured for use
+2026-07-19T08:11:46.379+05:30  INFO 3984 --- [chatapp] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-19T08:11:46.415+05:30  INFO 3984 --- [chatapp] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2026-07-19T08:11:46.437+05:30  INFO 3984 --- [chatapp] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-19T08:11:46.640+05:30  INFO 3984 --- [chatapp] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-19T08:11:46.660+05:30  INFO 3984 --- [chatapp] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-19T08:11:49.017+05:30  INFO 3984 --- [chatapp] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@46a388cc
+2026-07-19T08:11:49.019+05:30  INFO 3984 --- [chatapp] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-19T08:11:50.787+05:30  INFO 3984 --- [chatapp] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-19T08:11:53.038+05:30  INFO 3984 --- [chatapp] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T08:11:53.318+05:30  INFO 3984 --- [chatapp] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-07-19T08:11:53.626+05:30  WARN 3984 --- [chatapp] [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: b8b2f98d-2c01-481b-81c1-5e3e81b6bab2
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-07-19T08:11:53.636+05:30  INFO 3984 --- [chatapp] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-07-19T08:11:53.947+05:30  INFO 3984 --- [chatapp] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-19T08:11:53.948+05:30  INFO 3984 --- [chatapp] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2026-07-19T08:11:53.948+05:30  INFO 3984 --- [chatapp] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@207fce87]]
+2026-07-19T08:11:53.948+05:30  INFO 3984 --- [chatapp] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2026-07-19T08:11:53.955+05:30  INFO 3984 --- [chatapp] [           main] com.rohan.chatapp.ChatAppApplication     : Started ChatAppApplication in 9.034 seconds (process running for 9.298)
+2026-07-19T08:12:21.194+05:30  INFO 3984 --- [chatapp] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-19T08:12:21.194+05:30  INFO 3984 --- [chatapp] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-19T08:12:21.195+05:30  INFO 3984 --- [chatapp] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-07-19T08:12:21.310+05:30  INFO 3984 --- [chatapp] [nio-8080-exec-1] com.rohan.chatapp.auth.OtpService        : [DEV-MODE] OTP for +919876543210 is 701851
+2026-07-19T08:12:53.943+05:30  INFO 3984 --- [chatapp] [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 3, active threads = 1, queued tasks = 1, completed tasks = 1]

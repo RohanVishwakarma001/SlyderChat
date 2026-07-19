@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Account Settings - SlyderChat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdbcf",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#25d366",
+                    "tertiary": "#93492e",
+                    "background": "#faf9fe",
+                    "surface-container": "#eeedf3",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#3de273",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#8cd4c7",
+                    "outline": "#6c7b6b",
+                    "inverse-on-surface": "#f1f0f5",
+                    "surface-dim": "#dad9df",
+                    "surface-container-low": "#f4f3f8",
+                    "tertiary-fixed-dim": "#ffb59b",
+                    "primary": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#005047",
+                    "secondary": "#1c695f",
+                    "inverse-primary": "#3de273",
+                    "outline-variant": "#bbcbb9",
+                    "on-background": "#1a1b1f",
+                    "on-secondary-fixed": "#00201c",
+                    "on-primary-fixed": "#002109",
+                    "surface-container-highest": "#e3e2e7",
+                    "secondary-container": "#a5ede0",
+                    "on-primary-fixed-variant": "#005322",
+                    "surface-tint": "#006d2f",
+                    "on-secondary-container": "#226e63",
+                    "surface-variant": "#e3e2e7",
+                    "tertiary-container": "#ffa07e",
+                    "surface-container-high": "#e9e7ed",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#a8f0e3",
+                    "on-tertiary-fixed": "#380d00",
+                    "on-surface": "#1a1b1f",
+                    "primary-fixed": "#66ff8e",
+                    "inverse-surface": "#2f3034",
+                    "surface": "#faf9fe",
+                    "on-primary-container": "#005523",
+                    "surface-bright": "#faf9fe",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#78351b",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#763319"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "inset-card": "12px",
+                    "gutter-list": "12px",
+                    "stack-default": "8px",
+                    "header-height-collapsed": "44px",
+                    "stack-compact": "4px",
+                    "header-height-expanded": "96px",
+                    "margin-edge": "16px"
+            },
+            "fontFamily": {
+                    "subheadline": ["Inter"],
+                    "body": ["Inter"],
+                    "large-title": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "headline": ["Inter"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}],
+                    "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}],
+                    "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                    "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                    "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Inter', sans-serif;
+        }
+        .ios-list-row:last-child .ios-list-separator {
+            display: none;
+        }
+        .safe-top { padding-top: env(safe-area-inset-top); }
+        .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+        
+        .system-blur {
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+        }
+
+        .tap-active:active {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface select-none">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b-[0.5px] border-outline-variant/30 safe-top">
+<div class="flex items-center justify-between px-margin-edge h-header-height-collapsed md:h-14">
+<button class="flex items-center text-primary active:opacity-70 transition-opacity">
+<span class="material-symbols-outlined text-[24px]">chevron_left</span>
+<span class="font-headline text-headline ml-1">Settings</span>
+</button>
+<h1 class="font-headline text-headline text-on-surface absolute left-1/2 -translate-x-1/2">Account</h1>
+<div class="w-10"></div>
+</div>
+</header>
+<main class="pt-24 pb-32">
+<!-- Header Text -->
+<div class="px-margin-edge mb-6">
+<h2 class="font-large-title text-large-title text-on-surface">Account</h2>
+</div>
+<!-- Section 1: Security -->
+<section class="mb-8">
+<div class="mx-margin-edge bg-surface-container-lowest rounded-xl overflow-hidden border-[0.5px] border-outline-variant/20">
+<!-- Security Notifications -->
+<button class="w-full flex items-center px-4 py-3 tap-active transition-colors group">
+<div class="w-8 h-8 rounded-lg bg-[#007AFF] flex items-center justify-center mr-3">
+<span class="material-symbols-outlined text-white text-[20px]" data-weight="fill">shield</span>
+</div>
+<div class="flex-1 flex flex-col items-start">
+<span class="font-body text-body text-on-surface">Security Notifications</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</button>
+<div class="ios-list-separator h-[0.5px] bg-outline-variant/30 ml-14"></div>
+<!-- Passkeys -->
+<button class="w-full flex items-center px-4 py-3 tap-active transition-colors group">
+<div class="w-8 h-8 rounded-lg bg-[#5856D6] flex items-center justify-center mr-3">
+<span class="material-symbols-outlined text-white text-[20px]" data-weight="fill">key</span>
+</div>
+<div class="flex-1 flex flex-col items-start">
+<span class="font-body text-body text-on-surface">Passkeys</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</button>
+<div class="ios-list-separator h-[0.5px] bg-outline-variant/30 ml-14"></div>
+<!-- Two-step Verification -->
+<button class="w-full flex items-center px-4 py-3 tap-active transition-colors group">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center mr-3">
+<span class="material-symbols-outlined text-white text-[20px]" data-weight="fill">verified_user</span>
+</div>
+<div class="flex-1 flex flex-col items-start">
+<span class="font-body text-body text-on-surface">Two-step Verification</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</button>
+<div class="ios-list-separator h-[0.5px] bg-outline-variant/30 ml-14"></div>
+<!-- Change Number -->
+<button class="w-full flex items-center px-4 py-3 tap-active transition-colors group">
+<div class="w-8 h-8 rounded-lg bg-[#34C759] flex items-center justify-center mr-3">
+<span class="material-symbols-outlined text-white text-[20px]" data-weight="fill">phone_iphone</span>
+</div>
+<div class="flex-1 flex flex-col items-start">
+<span class="font-body text-body text-on-surface">Change Number</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Section 2: Info Requests -->
+<section class="mb-8">
+<div class="mx-margin-edge bg-surface-container-lowest rounded-xl overflow-hidden border-[0.5px] border-outline-variant/20">
+<!-- Request Account Info -->
+<button class="w-full flex items-center px-4 py-3 tap-active transition-colors group">
+<div class="w-8 h-8 rounded-lg bg-[#8E8E93] flex items-center justify-center mr-3">
+<span class="material-symbols-outlined text-white text-[20px]" data-weight="fill">description</span>
+</div>
+<div class="flex-1 flex flex-col items-start">
+<span class="font-body text-body text-on-surface">Request Account Info</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</button>
+</div>
+<p class="px-8 mt-2 font-caption text-caption text-outline">Create a report of your SlyderChat account information and settings, which you can access or port to another app.</p>
+</section>
+<!-- Section 3: Destructive Actions -->
+<section class="mb-8">
+<div class="mx-margin-edge bg-surface-container-lowest rounded-xl overflow-hidden border-[0.5px] border-outline-variant/20">
+<!-- Delete Account -->
+<button class="w-full flex items-center px-4 py-3 tap-active transition-colors group">
+<div class="w-8 h-8 rounded-lg bg-error flex items-center justify-center mr-3">
+<span class="material-symbols-outlined text-white text-[20px]" data-weight="fill">delete</span>
+</div>
+<div class="flex-1 flex flex-col items-start">
+<span class="font-body text-body text-error">Delete Account</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Hero Graphic (Subtle Aesthetic Filler) -->
+<div class="mt-4 px-margin-edge flex justify-center">
+<div class="relative w-full max-w-sm h-32 rounded-2xl overflow-hidden opacity-60">
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface/80 backdrop-blur-md border-t-[0.5px] border-outline-variant/30 pb-safe">
+<div class="h-[49px] flex items-center justify-around">
+<button class="flex flex-col items-center justify-center text-outline active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[24px]">circle_notifications</span>
+<span class="font-caption text-caption mt-0.5">Updates</span>
+</button>
+<button class="flex flex-col items-center justify-center text-outline active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[24px]">call</span>
+<span class="font-caption text-caption mt-0.5">Calls</span>
+</button>
+<button class="flex flex-col items-center justify-center text-outline active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[24px]">groups</span>
+<span class="font-caption text-caption mt-0.5">Communities</span>
+</button>
+<button class="flex flex-col items-center justify-center text-outline active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[24px]">chat</span>
+<span class="font-caption text-caption mt-0.5">Chats</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-caption text-caption mt-0.5">Settings</span>
+</button>
+</div>
+</nav>
+<script>
+        // Simple haptic feedback simulation
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('touchstart', () => {
+                if (window.navigator.vibrate) {
+                    window.navigator.vibrate(5);
+                }
+            });
+        });
+
+        // Handle scroll behavior for sticky header title fade
+        const header = document.querySelector('header h1');
+        const largeTitle = document.querySelector('h2');
+        
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            if (scrollY > 40) {
+                header.classList.remove('opacity-0');
+                header.classList.add('opacity-100');
+            } else {
+                header.classList.remove('opacity-100');
+                header.classList.add('opacity-0');
+            }
+        });
+
+        // Initialize header opacity
+        header.classList.add('opacity-0', 'transition-opacity', 'duration-200');
+    </script>
+</body></html>

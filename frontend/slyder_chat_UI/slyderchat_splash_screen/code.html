@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>SlyderChat Splash</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#bbcbb9",
+                    "inverse-primary": "#3de273",
+                    "tertiary-fixed-dim": "#ffb59b",
+                    "on-secondary-container": "#226e63",
+                    "on-surface-variant": "#3c4a3d",
+                    "secondary-container": "#a5ede0",
+                    "secondary": "#1c695f",
+                    "on-primary-fixed": "#002109",
+                    "tertiary-container": "#ffa07e",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f4f3f8",
+                    "surface-dim": "#dad9df",
+                    "on-secondary-fixed": "#00201c",
+                    "outline": "#6c7b6b",
+                    "background": "#faf9fe",
+                    "on-primary-container": "#005523",
+                    "surface-tint": "#006d2f",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#eeedf3",
+                    "primary-fixed-dim": "#3de273",
+                    "primary": "#006d2f",
+                    "surface-variant": "#e3e2e7",
+                    "surface-container-high": "#e9e7ed",
+                    "secondary-fixed": "#a8f0e3",
+                    "on-tertiary-fixed-variant": "#763319",
+                    "inverse-surface": "#2f3034",
+                    "surface": "#faf9fe",
+                    "on-secondary-fixed-variant": "#005047",
+                    "tertiary-fixed": "#ffdbcf",
+                    "primary-fixed": "#66ff8e",
+                    "on-tertiary-fixed": "#380d00",
+                    "surface-bright": "#faf9fe",
+                    "on-primary-fixed-variant": "#005322",
+                    "error": "#ba1a1a",
+                    "primary-container": "#25d366",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#f1f0f5",
+                    "tertiary": "#93492e",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#e3e2e7",
+                    "secondary-fixed-dim": "#8cd4c7",
+                    "on-tertiary-container": "#78351b",
+                    "on-background": "#1a1b1f",
+                    "on-surface": "#1a1b1f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "inset-card": "12px",
+                    "gutter-list": "12px",
+                    "header-height-collapsed": "44px",
+                    "margin-edge": "16px",
+                    "header-height-expanded": "96px",
+                    "stack-default": "8px",
+                    "stack-compact": "4px"
+            },
+            "fontFamily": {
+                    "large-title": ["Inter"],
+                    "headline": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "caption": ["Inter"],
+                    "subheadline": ["Inter"],
+                    "body": ["Inter"]
+            },
+            "fontSize": {
+                    "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                    "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}],
+                    "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}],
+                    "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}],
+                    "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .ios-status-bar {
+            height: 44px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
+
+        .status-left {
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .status-right {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        /* Entrance Animation for Logos */
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .animate-splash {
+            animation: fadeInScale 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .meta-container {
+            position: fixed;
+            bottom: 60px;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .from-text {
+            font-size: 14px;
+            color: #8e8e93; /* standard iOS secondary label */
+            letter-spacing: -0.1px;
+        }
+
+        /* Ripple effect background micro-interaction */
+        .ripple-bg {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at center, rgba(37, 211, 102, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
+            pointer-events: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen font-body bg-white">
+<!-- iOS Status Bar Placeholder -->
+<div class="ios-status-bar text-black">
+<div class="status-left" id="clock">9:41</div>
+<div class="status-right">
+<span class="material-symbols-outlined text-[18px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[18px]">wifi</span>
+<span class="material-symbols-outlined text-[20px]">battery_full</span>
+</div>
+</div>
+<!-- Background Atmospheric Effect -->
+<div class="ripple-bg"></div>
+<!-- Main Content Container -->
+<main class="flex flex-col items-center justify-center flex-grow">
+<!-- SlyderChat Logo Center -->
+<div class="animate-splash flex flex-col items-center">
+<div class="w-24 h-24 flex items-center justify-center">
+<img alt="SlyderChat Logo" class="w-full h-full object-contain drop-shadow-sm rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaf04K4qURU6R642_DHjzSYTtyN_PcwrC9GRA86iG1PEGe6ZQg6ZDihfXN9zfi18liS-8_s7uPpWOvyvdQOfzJjUnfjr-Px3viOW3QlIcjgSmhYOufVxTwEm5-rgX3NRFG2SRn0VGo19foswqIyPOjnt9ZEPedegkSQVTjIkIo_oJlb4nmi4VdHXmsRgL_2cRtNoZthWeQQiiVeFBdl0C53DHWQIOWb-O63Yzyq8EGC5vgX9gf7rXq"/>
+</div>
+</div>
+</main>
+<!-- Bottom Footer Brand -->
+<div class="meta-container animate-splash" style="animation-delay: 0.3s; opacity: 0;">
+<span class="from-text font-caption">from</span>
+<div class="flex items-center gap-1.5">
+<!-- Meta Logo Representation -->
+<svg fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z" fill="#0064E0"></path>
+<path d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" fill="#0064E0" fill-opacity="0.1"></path>
+</svg>
+<span class="font-headline tracking-widest text-[#0064E0]" style="font-size: 18px; font-weight: 700;">Meta</span>
+</div>
+</div>
+<!-- Script for interactive elements and real-time clock -->
+<script>
+        // Update the clock to match current time
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Optional: simulate transition after delay
+        /*
+        setTimeout(() => {
+            document.body.style.transition = 'opacity 0.5s ease-out';
+            document.body.style.opacity = '0';
+        }, 2500);
+        */
+
+        // Micro-interaction: logo pulse
+        document.addEventListener('DOMContentLoaded', () => {
+            const logo = document.querySelector('.animate-splash');
+            logo.addEventListener('click', () => {
+                logo.style.transition = 'transform 0.1s ease';
+                logo.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    logo.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Edit Profile - SlyderChat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#1a1b1f",
+                    "surface-container": "#eeedf3",
+                    "tertiary-container": "#ffa07e",
+                    "surface-bright": "#faf9fe",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#005047",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#380d00",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#25d366",
+                    "primary": "#006d2f",
+                    "tertiary-fixed": "#ffdbcf",
+                    "on-primary-fixed": "#002109",
+                    "on-primary-container": "#005523",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#93492e",
+                    "surface": "#faf9fe",
+                    "secondary-fixed-dim": "#8cd4c7",
+                    "tertiary-fixed-dim": "#ffb59b",
+                    "on-tertiary-container": "#78351b",
+                    "on-secondary-fixed": "#00201c",
+                    "background": "#faf9fe",
+                    "primary-fixed": "#66ff8e",
+                    "surface-container-highest": "#e3e2e7",
+                    "secondary": "#1c695f",
+                    "outline-variant": "#bbcbb9",
+                    "on-secondary-container": "#226e63",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f4f3f8",
+                    "on-tertiary-fixed-variant": "#763319",
+                    "on-surface-variant": "#3c4a3d",
+                    "on-error": "#ffffff",
+                    "outline": "#6c7b6b",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#1a1b1f",
+                    "secondary-fixed": "#a8f0e3",
+                    "surface-container-high": "#e9e7ed",
+                    "inverse-on-surface": "#f1f0f5",
+                    "surface-tint": "#006d2f",
+                    "inverse-surface": "#2f3034",
+                    "surface-variant": "#e3e2e7",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#dad9df",
+                    "primary-fixed-dim": "#3de273",
+                    "secondary-container": "#a5ede0",
+                    "on-primary-fixed-variant": "#005322",
+                    "inverse-primary": "#3de273"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter-list": "12px",
+                    "inset-card": "12px",
+                    "stack-compact": "4px",
+                    "stack-default": "8px",
+                    "header-height-expanded": "96px",
+                    "header-height-collapsed": "44px",
+                    "margin-edge": "16px"
+            },
+            "fontFamily": {
+                    "body": ["Inter"],
+                    "large-title": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "subheadline": ["Inter"],
+                    "headline": ["Inter"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}],
+                    "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                    "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                    "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}],
+                    "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+            overscroll-behavior-y: none;
+        }
+        .ios-list-item:active {
+            background-color: #e5e7eb;
+        }
+        .ios-separator {
+            margin-left: 58px; /* Alignment with text after avatar or icon space */
+        }
+        .header-blur {
+            background-color: rgba(250, 249, 254, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface-container-low font-body text-on-surface select-none">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 header-blur border-b border-outline-variant/30 px-4 py-2">
+<div class="flex items-center justify-between h-11">
+<button class="text-primary font-body text-body active:opacity-50 transition-opacity">Cancel</button>
+<h1 class="font-headline text-headline text-on-surface">Edit Profile</h1>
+<button class="text-primary font-headline text-headline active:opacity-50 transition-opacity">Done</button>
+</div>
+</header>
+<main class="pb-10">
+<!-- Profile Picture Section -->
+<section class="flex flex-col items-center py-8">
+<div class="relative group">
+<div class="w-40 h-40 rounded-full overflow-hidden bg-surface-container-highest flex items-center justify-center border-[0.5px] border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="A professional, high-quality portrait of a friendly individual for a modern profile picture. The lighting is soft and studio-quality, emphasizing clarity and a clean minimalist aesthetic. The background is a soft, neutral grey gradient that blends seamlessly with the corporate light-mode UI design. The subject exudes reliability and approachability, consistent with the efficient and seamless brand identity of SlyderChat." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDQxbXNHhI5q4LQ1oNZXpsLoOGCwxA2IXpvWwz6YpGYYXysFwJ0cwSD95VKamYvj7fA7NYYmevXJtjqvH-jeowVDn2kOFTBSLuWjmim1sZzlaM6-AYsaB6mm_LgbuaiJzOJ8m84wKV0nDvxfpKTj64R_u6uYIgubimeBc5ZT4HOVu5ZDpfFg3c03xgtUfX-mpzVtFAwUCjyggeX70kU_ajTcUp0fUm7NNfGSr2RWI9tTLc5ZJdzUyO"/>
+</div>
+<button class="mt-4 text-primary font-body text-body active:opacity-50 transition-opacity">Edit</button>
+</div>
+<p class="mt-2 text-on-surface-variant font-caption text-caption px-margin-edge text-center">
+                Enter your name and add an optional profile picture.
+            </p>
+</section>
+<!-- Profile Details Group -->
+<div class="bg-surface-container-lowest border-y border-outline-variant/30">
+<!-- Name Row -->
+<div class="ios-list-item flex flex-col px-margin-edge py-3 min-h-[54px] justify-center transition-colors">
+<div class="flex items-center justify-between">
+<div class="flex-1">
+<label class="block font-caption text-caption text-on-surface-variant mb-0.5">Name</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 font-body text-body text-on-surface" placeholder="Your name" type="text" value="Alex Rivera"/>
+</div>
+</div>
+</div>
+<div class="h-[0.5px] bg-outline-variant/30 ml-margin-edge"></div>
+<!-- About Row -->
+<div class="ios-list-item flex items-center px-margin-edge py-3 min-h-[54px] transition-colors cursor-pointer group">
+<div class="flex-1">
+<label class="block font-caption text-caption text-on-surface-variant mb-0.5">About</label>
+<div class="font-body text-body text-on-surface">Available</div>
+</div>
+<span class="material-symbols-outlined text-outline/50 scale-75">chevron_right</span>
+</div>
+</div>
+<div class="px-margin-edge pt-8 pb-2">
+<h2 class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Phone Number</h2>
+</div>
+<!-- Phone Section Group -->
+<div class="bg-surface-container-lowest border-y border-outline-variant/30">
+<div class="ios-list-item flex items-center px-margin-edge py-3 min-h-[54px] transition-colors cursor-pointer group">
+<div class="flex-1">
+<div class="font-body text-body text-on-surface">+1 (555) 123-4567</div>
+</div>
+<span class="material-symbols-outlined text-outline/50 scale-75">chevron_right</span>
+</div>
+</div>
+<div class="px-margin-edge py-4">
+<p class="font-caption text-caption text-on-surface-variant">
+                Your phone number is visible to your SlyderChat contacts.
+            </p>
+</div>
+<!-- Danger Zone Section -->
+<div class="mt-8 bg-surface-container-lowest border-y border-outline-variant/30">
+<button class="w-full ios-list-item flex items-center px-margin-edge py-4 text-error transition-colors">
+<span class="font-body text-body">Delete Account</span>
+</button>
+</div>
+<div class="px-margin-edge py-4">
+<p class="font-caption text-caption text-on-surface-variant text-center">
+                SlyderChat v2.4.1
+            </p>
+</div>
+</main>
+<!-- Navigation Mirror (Shared Component Pattern) -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-t border-outline-variant/30">
+<div class="flex justify-around items-center w-full h-[49px] px-2">
+<div class="flex flex-col items-center justify-center text-on-surface-variant group active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">update</span>
+<span class="font-caption text-[10px] mt-0.5">Updates</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant group active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">call</span>
+<span class="font-caption text-[10px] mt-0.5">Calls</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant group active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-caption text-[10px] mt-0.5">Communities</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant group active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-caption text-[10px] mt-0.5">Chats</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary group active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-caption text-[10px] mt-0.5">Settings</span>
+</div>
+</div>
+</nav>
+<script>
+        // Micro-interactions for list items
+        document.querySelectorAll('.ios-list-item').forEach(item => {
+            item.addEventListener('touchstart', function() {
+                this.style.backgroundColor = 'rgba(0,0,0,0.05)';
+            });
+            item.addEventListener('touchend', function() {
+                this.style.backgroundColor = '';
+            });
+        });
+
+        // Simple handle for Done/Cancel
+        document.querySelector('header button:first-child').addEventListener('click', () => {
+            console.log('Cancel clicked');
+        });
+        document.querySelector('header button:last-child').addEventListener('click', () => {
+            console.log('Done clicked');
+        });
+    </script>
+</body></html>

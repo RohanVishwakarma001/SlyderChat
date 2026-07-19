@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Starred Messages - SlyderChat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#005047",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e9e7ed",
+                        "secondary-container": "#a5ede0",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e3e2e7",
+                        "on-primary-fixed": "#002109",
+                        "surface-bright": "#faf9fe",
+                        "secondary-fixed-dim": "#8cd4c7",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f1f0f5",
+                        "on-primary-fixed-variant": "#005322",
+                        "secondary": "#1c695f",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e3e2e7",
+                        "surface-dim": "#dad9df",
+                        "tertiary": "#93492e",
+                        "tertiary-container": "#ffa07e",
+                        "primary-fixed-dim": "#3de273",
+                        "on-error": "#ffffff",
+                        "outline": "#6c7b6b",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-container-low": "#f4f3f8",
+                        "primary": "#006d2f",
+                        "on-primary-container": "#005523",
+                        "background": "#faf9fe",
+                        "surface-container": "#eeedf3",
+                        "on-secondary-container": "#226e63",
+                        "on-background": "#1a1b1f",
+                        "primary-container": "#25d366",
+                        "on-tertiary-fixed": "#380d00",
+                        "tertiary-fixed": "#ffdbcf",
+                        "inverse-primary": "#3de273",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2f3034",
+                        "outline-variant": "#bbcbb9",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "primary-fixed": "#66ff8e",
+                        "secondary-fixed": "#a8f0e3",
+                        "on-tertiary-container": "#78351b",
+                        "on-surface": "#1a1b1f",
+                        "on-tertiary-fixed-variant": "#763319",
+                        "surface": "#faf9fe",
+                        "on-surface-variant": "#3c4a3d",
+                        "surface-tint": "#006d2f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter-list": "12px",
+                        "header-height-collapsed": "44px",
+                        "stack-default": "8px",
+                        "header-height-expanded": "96px",
+                        "inset-card": "12px",
+                        "stack-compact": "4px",
+                        "margin-edge": "16px"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "large-title": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "subheadline": ["Inter"]
+                    },
+                    "fontSize": {
+                        "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}],
+                        "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                        "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                        "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}],
+                        "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}],
+                        "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            background-color: #faf9fe;
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+        }
+        .safe-top {
+            padding-top: env(safe-area-inset-top);
+        }
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .message-bubble-tail-right::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: -8px;
+            width: 12px;
+            height: 12px;
+            background-color: inherit;
+            clip-path: polygon(0 0, 0% 100%, 100% 100%);
+        }
+        .message-bubble-tail-left::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -8px;
+            width: 12px;
+            height: 12px;
+            background-color: inherit;
+            clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary-container">
+<!-- Top AppBar (Medium Variant from JSON Reference) -->
+<header class="sticky top-0 w-full z-40 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-b border-outline-variant/30 safe-top">
+<div class="flex flex-col w-full px-margin-edge pt-4 pb-2">
+<div class="flex items-center justify-between w-full h-10 mb-2">
+<button class="flex items-center text-primary active:scale-95 transition-transform duration-100 hover:opacity-70">
+<span class="material-symbols-outlined mr-1">chevron_left</span>
+<span class="font-headline text-headline-mobile">Chats</span>
+</button>
+<div class="font-headline text-headline text-primary">Starred Messages</div>
+<button class="text-primary font-headline text-headline-mobile active:scale-95 transition-transform duration-100 hover:opacity-70">
+                    Edit
+                </button>
+</div>
+<!-- Search Bar Component -->
+<div class="relative w-full mt-2">
+<div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full bg-surface-container-high border-none rounded-xl py-2 pl-10 pr-4 font-body text-body placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="Search" type="text"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex flex-col w-full min-h-screen pb-24">
+<!-- Empty State (Conditional Logic) -->
+<div class="hidden flex-col items-center justify-center pt-32 px-12 text-center opacity-60" id="empty-state">
+<div class="bg-surface-container rounded-full p-8 mb-6">
+<span class="material-symbols-outlined text-6xl text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<h3 class="font-headline text-headline mb-2">No Starred Messages</h3>
+<p class="font-subheadline text-subheadline">Tap and hold on any message to star it, so you can easily find it later.</p>
+</div>
+<!-- Starred Messages List -->
+<section class="flex flex-col mt-4 space-y-6">
+<!-- Grouping: Today -->
+<div class="flex flex-col">
+<div class="px-margin-edge py-2">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Today</span>
+</div>
+<!-- Individual Message Item 1 -->
+<div class="flex flex-col bg-surface border-y border-outline-variant/10 active:bg-surface-container transition-colors duration-200">
+<div class="px-margin-edge py-3 flex items-start gap-gutter-list">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-secondary-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a young woman with a friendly smile, soft cinematic lighting, neutral gray background, modern corporate headshot style, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIUCq24TbNFX48shMGLINrOoC4lT_RLn8Q7Z4_4J5j-j5IJnpCQu85BUMeENBGCALM9gM-tA4D1A0KHnLc7YSKbCRS1aSZZlkfNoAbXybdnIKB3KCbM-dW7xNLd9FQ6_py-iYTsuJywCOXPb68LzcOf9ogkQzmwbZTkGHR4JW8L0HUmJa4r55zGhxU8GzPu3ksnpPLe9HB-jZHqKeI5zkZP5p1FGpNcLzW-qj3lKOW8tXuNlqYx-Ma"/>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-headline text-headline text-on-surface truncate">Sarah Jenkins</span>
+<span class="font-caption text-caption text-on-surface-variant">11:42 AM</span>
+</div>
+<div class="relative bg-surface-container-low rounded-2xl rounded-tl-none px-4 py-2 text-on-surface font-body text-body self-start max-w-[90%] border border-outline-variant/20">
+<p>The final presentation files are ready for review in the shared drive. Let me know if you need any changes before the 2 PM call!</p>
+<div class="absolute top-2 -right-1">
+<span class="material-symbols-outlined text-[14px] text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="mt-2 flex items-center text-primary gap-1">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-caption text-caption">View in Chat</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Individual Message Item 2 -->
+<div class="flex flex-col bg-surface border-b border-outline-variant/10 active:bg-surface-container transition-colors duration-200">
+<div class="px-margin-edge py-3 flex items-start gap-gutter-list">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A crisp, vibrant photo of a modern glass skyscraper reflecting a clear blue sky, architectural photography style, sharp edges, high contrast, corporate professional mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt1loxSYQU2ojGxtTfrPXj5sxRvkL7bQ62WuoA4rcUS6raCv_pf7mz0eRCj82yVGIrjMoik-B9CTbeYJN5OGNbbkhJB0RTMTyMgER65CSzQknZg8kmQK0Q9dj--fAzWTp_ASboBX6IWhExMWl8vGw0XOUBMrPyoMM2BORrcdq3AQ4F7XMwIgZUNl8eV6N5UY181hRWW1ssjUZJXEsmAIdLtozfKoM9nVbEvFFjZ6YZdv2xQiOQu-cT"/>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-headline text-headline text-on-surface truncate">Engineering Group</span>
+<span class="font-caption text-caption text-on-surface-variant">09:15 AM</span>
+</div>
+<div class="relative bg-surface-container-low rounded-2xl rounded-tl-none px-4 py-2 text-on-surface font-body text-body self-start max-w-[90%] border border-outline-variant/20">
+<div class="font-label-bold text-label-bold text-primary mb-1">David Chen</div>
+<p>We've deployed the fix to the staging environment. API response times are down to 45ms. 🚀</p>
+<div class="absolute top-2 -right-1">
+<span class="material-symbols-outlined text-[14px] text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="mt-2 flex items-center text-primary gap-1">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-caption text-caption">View in Chat</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Grouping: Yesterday -->
+<div class="flex flex-col">
+<div class="px-margin-edge py-2">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Yesterday</span>
+</div>
+<!-- Individual Message Item 3 (Image Message) -->
+<div class="flex flex-col bg-surface border-y border-outline-variant/10 active:bg-surface-container transition-colors duration-200">
+<div class="px-margin-edge py-3 flex items-start gap-gutter-list">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-tertiary-fixed flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A casual portrait of a man in his 30s wearing a minimalist sweater, soft natural lighting from a window, clean indoor background, sharp focus, professional yet relaxed aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp_xF9tMjbPl6BCU-REBKNWwAlnKxSB4bdXXGliwzD4wAs5tTItNE-DR41hINgnWowVkbLLCJ_aopisMRbCEbSh4-qgw0_Uc29WQsr3vMgB0yWt7QTm7WNhDcpClIum4dP9N7CBU0IjiPCHrJl60haYPkiQYRzPIHjg7Zm5cxwLDzVVAi0TxGMAqOq_SVbUXZT_RqGG3v7CjtJCr031J9lEUYDQtzskiA1EnyF-S72LxAaIcXyXPaB"/>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-headline text-headline text-on-surface truncate">Mark Thompson</span>
+<span class="font-caption text-caption text-on-surface-variant">Yesterday</span>
+</div>
+<div class="relative bg-surface-container-low rounded-2xl rounded-tl-none overflow-hidden self-start max-w-[80%] border border-outline-variant/20">
+<div class="w-full h-40 bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="A high-quality architectural photo of a contemporary minimalist home office interior, bright natural light, clean white walls, wooden desk, modern chair, sophisticated atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhCkBeVHL7kpXgXGlXuqooO9XwbAOpYO5iYMnOLBDT8LQZN6ZoWjmYbT1CIh2XykRGv5Cik2fLMRqo5jp8CCvyMkZ2UZCcV3B2xLF4lZhigHuZfXLWvEHh7Qz2sDhaYiBAWMsCIubmJcwPdwg7xBnbDrEpnPrLy3498tTBSw6ZfDaYtSxPFk1l2jE8FKVUDr0PMpOUjCvjcYAgd_jEQF9j-J0emsSqLXH7lHdv80b-6mXq6CbRKoau"/>
+</div>
+<div class="px-4 py-2">
+<p class="font-body text-body text-on-surface">This is the moodboard for the new office layout.</p>
+</div>
+<div class="absolute top-2 right-2 drop-shadow-md">
+<span class="material-symbols-outlined text-[18px] text-primary-fixed" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="mt-2 flex items-center text-primary gap-1">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-caption text-caption">View in Chat</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Individual Message Item 4 -->
+<div class="flex flex-col bg-surface border-b border-outline-variant/10 active:bg-surface-container transition-colors duration-200">
+<div class="px-margin-edge py-3 flex items-start gap-gutter-list">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-secondary-fixed-dim flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A studio portrait of a woman with glasses, confident expression, soft lighting, clean professional background, monochromatic color palette with subtle teal accents, high quality photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8QOskaz1swhskoUSjOXiiX1SIoxgPh860GdnXwhpvL47BUbe0We7P1HQ_MOaT3jt0WGC8j0PR89Z3DWtqhr65_7nAgfNRHLrUoVl7K1ZCAaXuu84fOwscdGUnSXKyTlwEWYPbsX3t6pexr6Qiiy3QlSDNfscGCiK6qJrAr9lDxAPPWlNSSV-lXoNpYM6_yqVaztom4JE3h0X9wksM0_80TFr300njmLyNnDL0MnHbs5t0lVrvvtLt"/>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-headline text-headline text-on-surface truncate">Jessica Wu</span>
+<span class="font-caption text-caption text-on-surface-variant">Yesterday</span>
+</div>
+<div class="relative bg-primary-container rounded-2xl rounded-tl-none px-4 py-2 text-on-primary-container font-body text-body self-start max-w-[90%]">
+<p>Don't forget the onboarding session for the new interns at 10 AM. I've sent the calendar invite already.</p>
+<div class="absolute top-2 -right-1">
+<span class="material-symbols-outlined text-[14px] text-on-primary-container" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="mt-2 flex items-center text-primary gap-1">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-caption text-caption">View in Chat</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (From JSON Reference) -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-t border-outline-variant/30">
+<div class="flex justify-around items-center w-full h-[49px] px-2">
+<!-- Updates -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 flex-1 h-full">
+<span class="material-symbols-outlined text-[24px]">update</span>
+<span class="font-caption text-caption">Updates</span>
+</button>
+<!-- Calls -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 flex-1 h-full">
+<span class="material-symbols-outlined text-[24px]">call</span>
+<span class="font-caption text-caption">Calls</span>
+</button>
+<!-- Communities -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 flex-1 h-full">
+<span class="material-symbols-outlined text-[24px]">groups</span>
+<span class="font-caption text-caption">Communities</span>
+</button>
+<!-- Chats (Active) -->
+<button class="flex flex-col items-center justify-center text-primary hover:bg-surface-container-low transition-colors duration-200 flex-1 h-full">
+<span class="material-symbols-outlined text-[24px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">chat</span>
+<span class="font-caption text-caption">Chats</span>
+</button>
+<!-- Settings -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 flex-1 h-full">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="font-caption text-caption">Settings</span>
+</button>
+</div>
+</nav>
+<script>
+        // Micro-interaction: Search filter simulation
+        const searchInput = document.querySelector('input[type="text"]');
+        const messageItems = document.querySelectorAll('main > section > div > div.bg-surface');
+        
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            let visibleCount = 0;
+
+            messageItems.forEach(item => {
+                const textContent = item.textContent.toLowerCase();
+                if (textContent.includes(term)) {
+                    item.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Handle date labels visibility
+            const sections = document.querySelectorAll('main > section > div');
+            sections.forEach(section => {
+                const items = section.querySelectorAll('.bg-surface');
+                const anyVisible = Array.from(items).some(i => i.style.display !== 'none');
+                section.querySelector('.px-margin-edge').style.display = anyVisible ? 'block' : 'none';
+            });
+
+            // Toggle empty state
+            const emptyState = document.getElementById('empty-state');
+            if (visibleCount === 0 && term.length > 0) {
+                emptyState.classList.remove('hidden');
+                emptyState.classList.add('flex');
+                emptyState.querySelector('h3').textContent = 'No results found';
+                emptyState.querySelector('p').textContent = `No starred messages matching "${term}"`;
+            } else if (visibleCount === 0 && term.length === 0) {
+                emptyState.classList.remove('hidden');
+                emptyState.classList.add('flex');
+                emptyState.querySelector('h3').textContent = 'No Starred Messages';
+            } else {
+                emptyState.classList.add('hidden');
+                emptyState.classList.remove('flex');
+            }
+        });
+
+        // Pull to refresh feel (visual only)
+        let touchStartY = 0;
+        document.addEventListener('touchstart', e => {
+            touchStartY = e.touches[0].clientY;
+        }, {passive: true});
+
+        document.addEventListener('touchmove', e => {
+            const touchY = e.touches[0].clientY;
+            const diff = touchY - touchStartY;
+            if (window.scrollY === 0 && diff > 0) {
+                // Could implement a visual pull-down indicator here
+            }
+        }, {passive: true});
+    </script>
+</body></html>

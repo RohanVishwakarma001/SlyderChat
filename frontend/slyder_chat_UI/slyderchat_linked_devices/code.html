@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#226e63",
+                    "on-tertiary-container": "#78351b",
+                    "inverse-primary": "#3de273",
+                    "surface-dim": "#dad9df",
+                    "on-primary-container": "#005523",
+                    "on-surface": "#1a1b1f",
+                    "on-background": "#1a1b1f",
+                    "surface-container-highest": "#e3e2e7",
+                    "on-primary-fixed-variant": "#005322",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#ffb59b",
+                    "primary-fixed-dim": "#3de273",
+                    "background": "#faf9fe",
+                    "inverse-surface": "#2f3034",
+                    "surface-bright": "#faf9fe",
+                    "secondary": "#1c695f",
+                    "inverse-on-surface": "#f1f0f5",
+                    "secondary-fixed": "#a8f0e3",
+                    "primary": "#006d2f",
+                    "surface-variant": "#e3e2e7",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#763319",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#93492e",
+                    "tertiary-container": "#ffa07e",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#e9e7ed",
+                    "on-surface-variant": "#3c4a3d",
+                    "on-secondary-fixed": "#00201c",
+                    "primary-container": "#25d366",
+                    "on-secondary-fixed-variant": "#005047",
+                    "primary-fixed": "#66ff8e",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#eeedf3",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#380d00",
+                    "on-primary-fixed": "#002109",
+                    "surface-tint": "#006d2f",
+                    "secondary-container": "#a5ede0",
+                    "surface": "#faf9fe",
+                    "outline-variant": "#bbcbb9",
+                    "surface-container-low": "#f4f3f8",
+                    "secondary-fixed-dim": "#8cd4c7",
+                    "outline": "#6c7b6b",
+                    "tertiary-fixed": "#ffdbcf",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "inset-card": "12px",
+                    "stack-compact": "4px",
+                    "stack-default": "8px",
+                    "margin-edge": "16px",
+                    "header-height-expanded": "96px",
+                    "header-height-collapsed": "44px",
+                    "gutter-list": "12px"
+            },
+            "fontFamily": {
+                    "body": ["Inter"],
+                    "caption": ["Inter"],
+                    "large-title": ["Inter"],
+                    "subheadline": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "headline": ["Inter"]
+            },
+            "fontSize": {
+                    "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}],
+                    "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                    "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}],
+                    "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                    "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Inter', sans-serif;
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+        }
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .safe-top {
+            padding-top: env(safe-area-inset-top);
+        }
+        .hairline-b {
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+        }
+        .hairline-t {
+            border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+        }
+        /* Material Symbols adjustment for iOS feel */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 ios-blur hairline-b transition-all duration-300">
+<div class="safe-top"></div>
+<div class="flex items-center justify-between px-4 h-[44px]">
+<button class="flex items-center text-primary active:opacity-40 transition-opacity">
+<span class="material-symbols-outlined text-[28px]" style="margin-left: -8px;">chevron_left</span>
+<span class="font-body text-body">Settings</span>
+</button>
+<h1 class="font-headline text-headline absolute left-1/2 -translate-x-1/2">Linked Devices</h1>
+<div class="w-[60px]"></div> <!-- Spacer for symmetry -->
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="pt-[calc(44px+env(safe-area-inset-top))] pb-20">
+<!-- Hero Illustration Section -->
+<section class="flex flex-col items-center justify-center px-margin-edge py-10 text-center">
+<div class="relative w-48 h-32 mb-6">
+<div class="absolute inset-0 flex items-center justify-center">
+<!-- Conceptual illustration placeholder -->
+<div class="w-40 h-24 bg-surface-container-high rounded-xl flex items-center justify-center overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist 3D isometric illustration of a sleek laptop and a modern smartphone sitting side-by-side on a soft gray surface. The scene is lit with bright, neutral light-mode lighting, using a palette of soft whites, cool grays, and accents of vibrant SlyderChat green. The style is modern, professional, and corporate, emphasizing connectivity and seamless technology integration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3vbiQ8oDjoD0AX5jAsvOe0EvVU_KrrQPpLRCnLJq3FLmTLN-3vVmI71XhA51KReq4qghZGgNBVQ4szCwVd_ARcV5I221tPZX4GnMJnu3OPH6L0dvjfnR5PSFw7L9OnQdkAxpOjklROhVDFlBaKLlLCLkjbEIVToGevLZyO5WhpK4md-BxGJg4Qs6SylbhtgaE0biKQSYruEGYh9kwI8HLPQcSkaCGnNOE4LJ3iGHmtWGcBkOcR5Du"/>
+</div>
+</div>
+<div class="absolute -bottom-2 -right-2 w-12 h-12 bg-primary rounded-full flex items-center justify-center border-4 border-background text-white shadow-sm">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">devices</span>
+</div>
+</div>
+<p class="font-body text-on-surface-variant max-w-[280px] mb-8 leading-snug">
+                Use SlyderChat on other devices by linking them to your phone.
+            </p>
+<button class="w-full max-w-sm bg-primary text-white font-headline text-headline py-3.5 rounded-xl active:scale-[0.98] transition-transform duration-100 shadow-sm">
+                Link a Device
+            </button>
+</section>
+<!-- Device Status Section -->
+<section class="mt-4">
+<div class="px-margin-edge pb-2">
+<h2 class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Device Status</h2>
+</div>
+<div class="bg-surface-container-lowest hairline-t hairline-b">
+<!-- Device Item 1 -->
+<div class="flex items-center px-4 py-3 active:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-10 h-10 bg-primary-container/20 rounded-full flex items-center justify-center text-primary mr-3">
+<span class="material-symbols-outlined text-[24px]">laptop</span>
+</div>
+<div class="flex-1 hairline-b py-1 group-last:border-none">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline text-headline">macOS</h3>
+<p class="font-subheadline text-on-surface-variant">Google Chrome • Active yesterday</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Device Item 2 -->
+<div class="flex items-center px-4 py-3 active:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-10 h-10 bg-primary-container/20 rounded-full flex items-center justify-center text-primary mr-3">
+<span class="material-symbols-outlined text-[24px]">desktop_windows</span>
+</div>
+<div class="flex-1 py-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline text-headline">Windows</h3>
+<p class="font-subheadline text-on-surface-variant">SlyderChat Desktop • Last active May 12</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Help Text -->
+<section class="px-margin-edge py-8">
+<div class="flex flex-col items-center text-center">
+<div class="flex items-center text-on-surface-variant mb-2">
+<span class="material-symbols-outlined text-[14px] mr-1" style="font-variation-settings: 'wght' 600;">lock</span>
+<p class="font-caption text-caption">End-to-end encrypted</p>
+</div>
+<p class="font-caption text-caption text-on-surface-variant max-w-[300px]">
+                    Your personal messages are end-to-end encrypted on all your devices. <a class="text-primary hover:underline" href="#">Learn more</a>
+</p>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Hidden based on rules but present as anchor) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface/80 ios-blur hairline-t md:hidden">
+<div class="flex justify-around items-center pt-stack-compact">
+<!-- Updates -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-200 py-1 flex-1">
+<span class="material-symbols-outlined text-[28px]">circle_notifications</span>
+<span class="font-caption text-caption">Updates</span>
+</button>
+<!-- Calls -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-200 py-1 flex-1">
+<span class="material-symbols-outlined text-[28px]">call</span>
+<span class="font-caption text-caption">Calls</span>
+</button>
+<!-- Communities -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-200 py-1 flex-1">
+<span class="material-symbols-outlined text-[28px]">groups</span>
+<span class="font-caption text-caption">Communities</span>
+</button>
+<!-- Chats -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-200 py-1 flex-1">
+<span class="material-symbols-outlined text-[28px]">chat</span>
+<span class="font-caption text-caption">Chats</span>
+</button>
+<!-- Settings (Active) -->
+<button class="flex flex-col items-center justify-center text-primary active:scale-90 duration-200 py-1 flex-1">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-caption text-caption">Settings</span>
+</button>
+</div>
+<div class="safe-bottom h-2"></div>
+</nav>
+<script>
+        // Micro-interaction for the header scrolling effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.classList.add('ios-blur');
+            } else {
+                header.classList.remove('ios-blur');
+            }
+        });
+
+        // Haptic-like feedback on buttons
+        document.querySelectorAll('button, .cursor-pointer').forEach(el => {
+            el.addEventListener('touchstart', () => {
+                if (window.navigator.vibrate) {
+                    window.navigator.vibrate(10);
+                }
+            });
+        });
+    </script>
+</body></html>

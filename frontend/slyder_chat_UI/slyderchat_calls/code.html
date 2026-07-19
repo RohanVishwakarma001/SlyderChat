@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Calls</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#1a1b1f",
+                    "surface-dim": "#dad9df",
+                    "outline-variant": "#bbcbb9",
+                    "on-primary": "#ffffff",
+                    "background": "#faf9fe",
+                    "tertiary-container": "#ffa07e",
+                    "surface-variant": "#e3e2e7",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#a5ede0",
+                    "primary": "#006d2f",
+                    "outline": "#6c7b6b",
+                    "surface-bright": "#faf9fe",
+                    "surface-container": "#eeedf3",
+                    "surface-tint": "#006d2f",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#005322",
+                    "on-primary-fixed": "#002109",
+                    "on-tertiary-container": "#78351b",
+                    "surface-container-low": "#f4f3f8",
+                    "on-background": "#1a1b1f",
+                    "on-tertiary-fixed-variant": "#763319",
+                    "on-secondary-fixed-variant": "#005047",
+                    "on-primary-container": "#005523",
+                    "secondary-fixed-dim": "#8cd4c7",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#a8f0e3",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#3de273",
+                    "surface-container-highest": "#e3e2e7",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#3de273",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#226e63",
+                    "tertiary": "#93492e",
+                    "secondary": "#1c695f",
+                    "tertiary-fixed-dim": "#ffb59b",
+                    "tertiary-fixed": "#ffdbcf",
+                    "surface-container-high": "#e9e7ed",
+                    "primary-container": "#25d366",
+                    "inverse-surface": "#2f3034",
+                    "on-secondary-fixed": "#00201c",
+                    "on-surface-variant": "#3c4a3d",
+                    "surface": "#faf9fe",
+                    "inverse-on-surface": "#f1f0f5",
+                    "on-tertiary-fixed": "#380d00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "header-height-expanded": "96px",
+                    "stack-compact": "4px",
+                    "margin-edge": "16px",
+                    "inset-card": "12px",
+                    "header-height-collapsed": "44px",
+                    "stack-default": "8px",
+                    "gutter-list": "12px"
+            },
+            "fontFamily": {
+                    "large-title": ["Inter"],
+                    "headline": ["Inter"],
+                    "subheadline": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "body": ["Inter"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                    "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}],
+                    "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}],
+                    "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                    "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            background-color: #faf9fe;
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+        }
+        .safe-pb {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .safe-pt {
+            padding-top: env(safe-area-inset-top);
+        }
+        .list-separator {
+            position: relative;
+        }
+        .list-separator::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 72px; /* Inset for avatar alignment */
+            height: 0.5px;
+            background-color: rgba(187, 203, 185, 0.3);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .active-tab {
+            color: #006d2f !important;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body text-on-surface antialiased bg-background">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b-[0.5px] border-outline-variant/30 flex flex-col px-margin-edge pt-safe pb-stack-default">
+<div class="flex items-center justify-between h-[44px]">
+<button class="text-primary font-body active:opacity-70 transition-opacity">Edit</button>
+<div class="flex items-center space-x-6">
+<button class="text-primary active:opacity-70 transition-opacity">
+<span class="material-symbols-outlined text-[24px]">phone_forwarded</span>
+</button>
+</div>
+</div>
+<div class="mt-2">
+<h1 class="font-large-title text-large-title-mobile text-on-surface">Calls</h1>
+</div>
+</header>
+<!-- Content Area -->
+<main class="pt-[110px] pb-[83px] min-h-screen overflow-y-auto no-scrollbar">
+<!-- Search Bar -->
+<div class="px-margin-edge py-2">
+<div class="bg-surface-variant/50 rounded-lg flex items-center px-3 py-2 space-x-2">
+<span class="material-symbols-outlined text-outline text-[20px]">search</span>
+<input class="bg-transparent border-none p-0 focus:ring-0 text-body w-full placeholder-outline" placeholder="Search" type="text"/>
+</div>
+</div>
+<!-- Create Call Link Section -->
+<section class="mt-4 bg-surface-container-lowest">
+<button class="w-full flex items-center px-margin-edge py-3 space-x-4 active:bg-surface-variant/30 transition-colors">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[24px]">link</span>
+</div>
+<div class="flex-1 flex flex-col items-start">
+<p class="font-headline text-primary">Create Call Link</p>
+<p class="font-subheadline text-outline">Share a link for your SlyderChat call</p>
+</div>
+</button>
+</section>
+<!-- Recents Title -->
+<div class="px-margin-edge py-4">
+<h2 class="font-headline text-on-surface">Recent</h2>
+</div>
+<!-- Recent Calls List -->
+<section class="bg-surface-container-lowest">
+<!-- Call Row 1 (Missed Video) -->
+<div class="list-separator flex items-center px-margin-edge py-3 active:bg-surface-variant/30 transition-colors">
+<img class="w-[52px] h-[52px] rounded-full object-cover" data-alt="A professional close-up studio portrait of a mid-40s woman with glasses, soft natural lighting, minimalist aesthetic with muted tones, elegant and trustworthy appearance, modern light-mode background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_0h_JwlkpHa5lQBCU0L6IgtgMdtzi0brt2kEWUr_eRaVk6mEBFdX04CUm6J8b8b16hFju5vOMK0FPlo6LzW9lZ2cHln2g7SvEy16udL4r3K1QKDB6Ea5fjMQblaWnMypbk9EHXowBfPV23KzVqoXk3MtMLYq9xCYlUKZ9loM4-U6imY6pEyaAvhZC9VMrvzmYOk3wlXKb8T8hFpwwzZiDNdxuQwoQwLb0vXBWW7erJ1mIyk5ziBG1"/>
+<div class="flex-1 ml-gutter-list flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline text-error">Sarah Jenkins</span>
+<div class="flex items-center text-outline space-x-1">
+<span class="material-symbols-outlined text-[16px]">videocam</span>
+<span class="font-subheadline">Missed</span>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<span class="font-subheadline text-outline">Tuesday</span>
+<button class="text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[22px]">info</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Call Row 2 (Outgoing Audio) -->
+<div class="list-separator flex items-center px-margin-edge py-3 active:bg-surface-variant/30 transition-colors">
+<img class="w-[52px] h-[52px] rounded-full object-cover" data-alt="A casual lifestyle portrait of a young man in his late 20s wearing a linen shirt, warm golden hour sunlight, outdoor modern setting, cheerful and friendly mood, high-fidelity corporate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCikZuXExYub2PhAtCEM-3m135vDxEDi4qWLPN-l1iCql69RPQvU9izd8VKEN2geWvaC7GqgbLv6CEOJm0vloDLXDgGV0ryBv_M4A9RiVyUhLPRIFJ6wxV6MwF9jBucEo7gWOtlyatPrCwo5TcivGkW_JiJrKk8c01E7BJOAkk582KtUYCgm1d789xQDD7NEHS3pXUNh5J3FWRt6TaWQL_1eJVp8FZxbJIcjBx_DU4vsJ8quqaTyTjA"/>
+<div class="flex-1 ml-gutter-list flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline text-on-surface">Michael Chen</span>
+<div class="flex items-center text-outline space-x-1">
+<span class="material-symbols-outlined text-[16px]">call_made</span>
+<span class="font-subheadline">Outgoing</span>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<span class="font-subheadline text-outline">Monday</span>
+<button class="text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[22px]">info</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Call Row 3 (Incoming Video) -->
+<div class="list-separator flex items-center px-margin-edge py-3 active:bg-surface-variant/30 transition-colors">
+<div class="w-[52px] h-[52px] rounded-full bg-tertiary flex items-center justify-center text-on-tertiary font-headline">DT</div>
+<div class="flex-1 ml-gutter-list flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline text-on-surface">Design Team Sync</span>
+<div class="flex items-center text-outline space-x-1">
+<span class="material-symbols-outlined text-[16px]">videocam</span>
+<span class="font-subheadline">Incoming</span>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<span class="font-subheadline text-outline">Sunday</span>
+<button class="text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[22px]">info</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Call Row 4 (Missed Audio) -->
+<div class="list-separator flex items-center px-margin-edge py-3 active:bg-surface-variant/30 transition-colors">
+<img class="w-[52px] h-[52px] rounded-full object-cover" data-alt="Minimalist modern headshot of a mature man with a beard, wearing a dark turtleneck, against a clean light grey background, soft shadow play, sophisticated corporate aesthetic, high resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3-r0d0BhxxD3MksGYeUGz9ebpZPHIFLNICapCp2ly4WyqsDpKokClPOtcCJ2eRAQNa2cJtdG53ZCv2GwKhF-prc8rS7P-syZ6pbMpNBF5QdTI6M52GfwZ9zYh0hwOhvZBES-fY4_NNIP7vUy9PPj7OVLC0jlL9hzYPSqwGAN5BoEk_n-ISqRncio9hBRPe-kx9jYnE6ZJrDaT_j3RuBYEMy9IdPi_W4AcmBLz3KoXbh-H3muFGg1d"/>
+<div class="flex-1 ml-gutter-list flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline text-error">David Miller</span>
+<div class="flex items-center text-outline space-x-1">
+<span class="material-symbols-outlined text-[16px]">call_received</span>
+<span class="font-subheadline">Missed</span>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<span class="font-subheadline text-outline">14/10/23</span>
+<button class="text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[22px]">info</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Call Row 5 (Outgoing Video) -->
+<div class="list-separator flex items-center px-margin-edge py-3 active:bg-surface-variant/30 transition-colors">
+<img class="w-[52px] h-[52px] rounded-full object-cover" data-alt="Portrait of a young woman with curly hair laughing, vibrant and energetic lighting, urban background softly blurred, modern fashion aesthetic, clean skin tones and high-end photographic quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkw7wu7zmM4R2vQyIbmWzmLamgD9S5MoW-RFv8XtNJjyfFKVlvTER7gmRc-scKIpRgxiBSKpavtRGsFgt_IE_ePtFkKdWvhxfheL-IoSKyJJu-1oM6yg37SzrPLcxShg1_Rs49AyLGWjSjy5waSc1OManJOFzVrp2NHDCCYV5IcsDtyUtULK2CjCBzD_HVTW-2JsO1RTAbNiG4Rpd4XPWZkHPqcBSY8xycsStTpDO02VNdykQOlizq"/>
+<div class="flex-1 ml-gutter-list flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline text-on-surface">Elena Rodriguez</span>
+<div class="flex items-center text-outline space-x-1">
+<span class="material-symbols-outlined text-[16px]">videocam</span>
+<span class="font-subheadline">Outgoing</span>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<span class="font-subheadline text-outline">12/10/23</span>
+<button class="text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[22px]">info</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Extra padding for bottom scroll -->
+<div class="h-10"></div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface/80 backdrop-blur-md border-t-[0.5px] border-outline-variant/30 pb-safe">
+<div class="h-[49px] flex items-center justify-around">
+<!-- Updates -->
+<button class="flex flex-col items-center justify-center text-outline active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[28px]">circle_notifications</span>
+<span class="font-caption text-caption">Updates</span>
+</button>
+<!-- Calls (Active) -->
+<button class="flex flex-col items-center justify-center text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">call</span>
+<span class="font-caption text-caption">Calls</span>
+</button>
+<!-- Communities -->
+<button class="flex flex-col items-center justify-center text-outline active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[28px]">groups</span>
+<span class="font-caption text-caption">Communities</span>
+</button>
+<!-- Chats -->
+<button class="flex flex-col items-center justify-center text-outline active:scale-90 transition-transform relative">
+<span class="material-symbols-outlined text-[28px]">chat</span>
+<span class="font-caption text-caption">Chats</span>
+<div class="absolute -top-1 -right-2 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">12</div>
+</button>
+<!-- Settings -->
+<button class="flex flex-col items-center justify-center text-outline active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[28px]">settings</span>
+<span class="font-caption text-caption">Settings</span>
+</button>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for rows
+        document.querySelectorAll('.list-separator').forEach(row => {
+            row.addEventListener('touchstart', () => {
+                row.classList.add('bg-surface-variant/30');
+            });
+            row.addEventListener('touchend', () => {
+                row.classList.remove('bg-surface-variant/30');
+            });
+        });
+
+        // Hide header elements on scroll like native iOS
+        const header = document.querySelector('header');
+        const main = document.querySelector('main');
+        let lastScrollY = 0;
+
+        main.addEventListener('scroll', () => {
+            const currentScrollY = main.scrollTop;
+            if (currentScrollY > 50) {
+                // Simplified logic: could implement more complex title shrinking here
+            }
+            lastScrollY = currentScrollY;
+        });
+    </script>
+</body></html>

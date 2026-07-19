@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>SlyderChat - New Group</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        /* Custom hide scrollbar */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* iOS-like separator inset */
+        .list-separator {
+            position: relative;
+        }
+        .list-separator::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 16px;
+            height: 0.5px;
+            background-color: rgba(187, 203, 185, 0.3); /* outline-variant/30 */
+        }
+        .list-separator-full::after {
+            left: 0;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "on-surface-variant": "#3c4a3d",
+                        "on-primary-fixed-variant": "#005322",
+                        "primary-fixed": "#66ff8e",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#78351b",
+                        "surface-variant": "#e3e2e7",
+                        "surface-container-highest": "#e3e2e7",
+                        "primary-container": "#25d366",
+                        "inverse-surface": "#2f3034",
+                        "surface-bright": "#faf9fe",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#226e63",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#eeedf3",
+                        "secondary-fixed-dim": "#8cd4c7",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#006d2f",
+                        "outline": "#6c7b6b",
+                        "on-secondary-fixed": "#00201c",
+                        "on-tertiary-fixed-variant": "#763319",
+                        "on-surface": "#1a1b1f",
+                        "on-primary-fixed": "#002109",
+                        "secondary": "#1c695f",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#a5ede0",
+                        "on-tertiary-fixed": "#380d00",
+                        "on-background": "#1a1b1f",
+                        "surface-dim": "#dad9df",
+                        "tertiary-container": "#ffa07e",
+                        "tertiary": "#93492e",
+                        "outline-variant": "#bbcbb9",
+                        "on-secondary-fixed-variant": "#005047",
+                        "on-primary-container": "#005523",
+                        "tertiary-fixed": "#ffdbcf",
+                        "surface-container-low": "#f4f3f8",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e9e7ed",
+                        "surface": "#faf9fe",
+                        "inverse-primary": "#3de273",
+                        "inverse-on-surface": "#f1f0f5",
+                        "secondary-fixed": "#a8f0e3",
+                        "background": "#faf9fe",
+                        "primary-fixed-dim": "#3de273",
+                        "primary": "#006d2f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-edge": "16px",
+                        "header-height-collapsed": "44px",
+                        "stack-compact": "4px",
+                        "inset-card": "12px",
+                        "header-height-expanded": "96px",
+                        "gutter-list": "12px",
+                        "stack-default": "8px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Inter"],
+                        "body": ["Inter"],
+                        "headline": ["Inter"],
+                        "subheadline": ["Inter"],
+                        "large-title": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                        "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}],
+                        "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}],
+                        "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}],
+                        "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                        "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface-container-low text-on-surface font-body min-h-screen selection:bg-primary/20">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-surface/80 ios-blur w-full border-b border-outline-variant/30 pt-safe">
+<div class="flex items-center justify-between px-margin-edge h-header-height-collapsed">
+<button class="text-primary font-body text-body active:opacity-60 transition-opacity">Cancel</button>
+<h1 class="font-headline text-headline">New Group</h1>
+<button class="text-primary font-headline text-headline active:opacity-60 transition-opacity">Create</button>
+</div>
+</header>
+<main class="max-w-md mx-auto pb-20">
+<!-- Group Identity Section -->
+<section class="bg-surface px-margin-edge py-8 flex flex-col items-center">
+<!-- Icon Placeholder -->
+<div class="relative mb-6">
+<div class="w-24 h-24 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border-2 border-transparent">
+<span class="material-symbols-outlined text-on-surface-variant text-[48px]">photo_camera</span>
+</div>
+<div class="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center border-2 border-surface shadow-sm">
+<span class="material-symbols-outlined text-on-primary text-[20px]" style="font-variation-settings: 'wght' 600;">add</span>
+</div>
+</div>
+<!-- Input Section -->
+<div class="w-full flex items-center border-y border-outline-variant/30 py-3">
+<input class="flex-1 bg-transparent border-none focus:ring-0 font-body text-body px-0" maxlength="25" placeholder="Group Subject" type="text"/>
+<button class="p-2 text-on-surface-variant active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[24px]">mood</span>
+</button>
+</div>
+<p class="w-full text-on-surface-variant font-caption text-caption mt-2">
+                Provide a group subject and optional group icon
+            </p>
+</section>
+<!-- Participants Section Header -->
+<div class="px-margin-edge pt-8 pb-2">
+<h2 class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Participants: 3</h2>
+</div>
+<!-- Horizontal Participants List -->
+<section class="bg-surface py-4 border-y border-outline-variant/30">
+<div class="flex overflow-x-auto no-scrollbar gap-4 px-margin-edge">
+<!-- Participant 1 -->
+<div class="flex flex-col items-center flex-shrink-0 w-16">
+<div class="relative">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-surface-container-highest border border-outline-variant/20">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young woman named Aria with a friendly expression, soft studio lighting, high-quality digital photography style. She has warm skin tones and natural features, reflecting a professional yet approachable chat app user profile. The background is a clean, minimalist gradient consistent with a modern light-mode messaging interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmusvlcV53fqpER5rDV6rLXn_m3Ny48b3ovO-NWuUhejyJBzsY_NdGQ7Rqi-Lx18bnP7XHbG9aeesTrTsum18qYZzL5Bn5W-r6M2RjA87is3GYjhuZkGyrSDEBR8reywGRSyimvGoa-P7q4FWz_7DwD_9CRMvwFfkbHGUv243XKL5vh-3sRO3qB_968iLPXD2FM1AfiSE-d0Biz68XKwUaAHWQZS8AfYJRTLb_ZOz2k-nJ8YGXPE_Z"/>
+</div>
+<button class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-on-surface-variant flex items-center justify-center border border-surface shadow-sm active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-surface text-[12px]" style="font-variation-settings: 'wght' 700;">close</span>
+</button>
+</div>
+<span class="mt-2 font-caption text-caption text-on-surface truncate w-full text-center">Aria</span>
+</div>
+<!-- Participant 2 -->
+<div class="flex flex-col items-center flex-shrink-0 w-16">
+<div class="relative">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-surface-container-highest border border-outline-variant/20">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a man named Arjun with a gentle smile, captured in high-resolution digital detail. He has a modern, clean-cut look suitable for a tech-oriented social application. The lighting is balanced and soft, emphasizing a bright and welcoming atmosphere in a corporate yet contemporary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfsZ7v55sqoBVoPzH8yUWtwsvX6o8Xyq8J2thBHgBekWOCgMDEJS4EVdZQ5VP4lyVHb5aSeB95WY6Y_vwM7jUCsa0eFOdSqA_QbBDDWxQChlu-0mIbfv9X3wjN0InlvMe3mXY_i3SVVKgSN4OIzUalg98PPTqan6fTtqI1f_YViv7RnE7YwWqM6cZGdbc76iCFHaakOacGI-9db0SRgv3QxtS0eKDoKW_10iGzX1bDsM88YC68-5DY"/>
+</div>
+<button class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-on-surface-variant flex items-center justify-center border border-surface shadow-sm active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-surface text-[12px]" style="font-variation-settings: 'wght' 700;">close</span>
+</button>
+</div>
+<span class="mt-2 font-caption text-caption text-on-surface truncate w-full text-center">Arjun</span>
+</div>
+<!-- Participant 3 -->
+<div class="flex flex-col items-center flex-shrink-0 w-16">
+<div class="relative">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-surface-container-highest border border-outline-variant/20">
+<img class="w-full h-full object-cover" data-alt="A stylish portrait of a woman named Elena, featuring high-fidelity facial details and soft, cinematic lighting. She has a serene and confident expression, styled for a high-end messaging app profile. The image is crisp and clear, following a modern, professional aesthetic with light-mode color palettes and subtle background depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSQH4do1ZEIEw2cqPFmaTPGHnsO4Y1HJUQmlXBMo0E_BzNY879x1lnlgZS87Ua5iiCT-pEPeY6PXP0uit8Dkwjl_AFFtmPYPU0uXCrBhCLx5n_PXYGm_t13rpj-nTLtYO8uAgVGjcPhnIDItcapOngEDG4ZC4ZqQcR4YhmKEgn51_bqQcyEYzwkZO6hCLE-Kdl3LMk9PeJQhANPcrrorfU205e0PiUG476q0CPPMEkTcRB3MEunadH"/>
+</div>
+<button class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-on-surface-variant flex items-center justify-center border border-surface shadow-sm active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-surface text-[12px]" style="font-variation-settings: 'wght' 700;">close</span>
+</button>
+</div>
+<span class="mt-2 font-caption text-caption text-on-surface truncate w-full text-center">Elena</span>
+</div>
+</div>
+</section>
+<!-- Settings Grouped List -->
+<div class="mt-8">
+<div class="bg-surface border-y border-outline-variant/30">
+<!-- Disappearing Messages -->
+<div class="list-separator flex items-center justify-between py-3 px-margin-edge active:bg-surface-variant/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">timer</span>
+</div>
+<span class="font-body text-body text-on-surface">Disappearing Messages</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="font-body text-body text-on-surface-variant">Off</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+<!-- Group Permissions -->
+<div class="flex items-center justify-between py-3 px-margin-edge active:bg-surface-variant/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[20px]">lock</span>
+</div>
+<span class="font-body text-body text-on-surface">Group Permissions</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Hint Text -->
+<div class="px-margin-edge mt-4">
+<p class="font-caption text-caption text-on-surface-variant leading-relaxed">
+                Admins can choose who can change the group's subject, icon, and description, and who can send messages or add new members.
+            </p>
+</div>
+</main>
+<!-- Bottom Home Indicator Area (Safe Area) -->
+<div class="fixed bottom-0 w-full h-8 bg-surface-container-low/80 backdrop-blur-md"></div>
+<script>
+        // Simple micro-interaction for the "Create" button
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if(this.innerText === 'Create') {
+                    this.innerHTML = '<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span>';
+                    setTimeout(() => {
+                        this.innerText = 'Done';
+                    }, 1200);
+                }
+            });
+        });
+
+        // Toggle focus state visual for the input field
+        const input = document.querySelector('input');
+        input.addEventListener('focus', () => {
+            input.parentElement.classList.add('border-primary');
+            input.parentElement.classList.remove('border-outline-variant/30');
+        });
+        input.addEventListener('blur', () => {
+            input.parentElement.classList.remove('border-primary');
+            input.parentElement.classList.add('border-outline-variant/30');
+        });
+    </script>
+</body></html>

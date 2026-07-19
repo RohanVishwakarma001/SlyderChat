@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Updates - SlyderChat iOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#1a1b1f",
+                    "surface-dim": "#dad9df",
+                    "outline-variant": "#bbcbb9",
+                    "on-primary": "#ffffff",
+                    "background": "#faf9fe",
+                    "tertiary-container": "#ffa07e",
+                    "surface-variant": "#e3e2e7",
+                    "primary-fixed": "#66ff8e",
+                    "secondary-container": "#a5ede0",
+                    "primary": "#006d2f",
+                    "outline": "#6c7b6b",
+                    "surface-bright": "#faf9fe",
+                    "surface-container": "#eeedf3",
+                    "surface-tint": "#006d2f",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#005322",
+                    "on-primary-fixed": "#002109",
+                    "on-tertiary-container": "#78351b",
+                    "surface-container-low": "#f4f3f8",
+                    "on-background": "#1a1b1f",
+                    "on-tertiary-fixed-variant": "#763319",
+                    "on-secondary-fixed-variant": "#005047",
+                    "on-primary-container": "#005523",
+                    "secondary-fixed-dim": "#8cd4c7",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#a8f0e3",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#3de273",
+                    "surface-container-highest": "#e3e2e7",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#3de273",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#226e63",
+                    "tertiary": "#93492e",
+                    "secondary": "#1c695f",
+                    "tertiary-fixed-dim": "#ffb59b",
+                    "tertiary-fixed": "#ffdbcf",
+                    "surface-container-high": "#e9e7ed",
+                    "primary-container": "#25d366",
+                    "inverse-surface": "#2f3034",
+                    "on-secondary-fixed": "#00201c",
+                    "on-surface-variant": "#3c4a3d",
+                    "surface": "#faf9fe",
+                    "inverse-on-surface": "#f1f0f5",
+                    "on-tertiary-fixed": "#380d00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "header-height-expanded": "96px",
+                    "stack-compact": "4px",
+                    "margin-edge": "16px",
+                    "inset-card": "12px",
+                    "header-height-collapsed": "44px",
+                    "stack-default": "8px",
+                    "gutter-list": "12px"
+            },
+            "fontFamily": {
+                    "large-title": ["Inter"],
+                    "headline": ["Inter"],
+                    "subheadline": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "body": ["Inter"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                    "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}],
+                    "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}],
+                    "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                    "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { -webkit-tap-highlight-color: transparent; }
+        .ios-blur { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .status-ring {
+            padding: 2px;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(to right, #25D366, #128C7E) border-box;
+            border: 3px solid transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-on-surface/80 backdrop-blur-md border-b-[0.5px] border-outline-variant/30 flex flex-col px-margin-edge pt-safe pb-stack-default">
+<div class="h-11 flex items-center justify-between">
+<button class="text-primary dark:text-primary-fixed active:opacity-70 transition-opacity font-body text-body">Edit</button>
+<div class="flex items-center gap-6">
+<button class="active:opacity-70 transition-opacity">
+<span class="material-symbols-outlined text-[24px] text-primary dark:text-primary-fixed">photo_camera</span>
+</button>
+<button class="active:opacity-70 transition-opacity">
+<span class="material-symbols-outlined text-[24px] text-primary dark:text-primary-fixed">search</span>
+</button>
+</div>
+</div>
+<h1 class="font-large-title text-large-title-mobile dark:text-on-surface mt-2">Updates</h1>
+</header>
+<main class="pt-[140px] pb-32">
+<!-- Status Section -->
+<section class="mb-8">
+<div class="px-margin-edge flex justify-between items-center mb-4">
+<h2 class="font-headline text-headline">Status</h2>
+<button class="text-primary font-body text-body">Privacy</button>
+</div>
+<div class="flex overflow-x-auto hide-scrollbar gap-4 px-margin-edge">
+<!-- My Status -->
+<div class="flex flex-col items-center flex-shrink-0 w-20">
+<div class="relative w-[72px] h-[72px]">
+<img class="w-full h-full rounded-full object-cover border-2 border-surface-container" data-alt="A professional headshot of a friendly individual with soft studio lighting, styled for a modern corporate messaging app interface. High-quality portrait photography with a neutral, clean background that complements a light-mode UI. The mood is approachable and professional, using a natural color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJ0Qror7d1ch2bu-TEoWLBIBq02w0F9PLwkxVHG3nFsTO1cLRyVsKFPKzOx48fpOVk-GG0EFF4zPzd79JvCp3J7IiItluarzKdWTLRYRrZXK7AgMnK4Arsgn8F8_IAGlq2qIJKsyULJl9hmWjA9D2rFwrysFzjg8N6WaNI98qufM04Y57L8Jog56vImtbLgU0qbpZ6LTNSS18DVV4eTLjhuAqKBPsBFUlIu3F5-z6SKDzakSJjWhjG"/>
+<div class="absolute bottom-0 right-0 bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center border-2 border-white">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</div>
+</div>
+<span class="font-caption text-caption mt-2 text-on-surface-variant">My Status</span>
+</div>
+<!-- Recent Status Updates -->
+<div class="flex flex-col items-center flex-shrink-0 w-20">
+<div class="w-[72px] h-[72px] status-ring rounded-full">
+<img class="w-full h-full rounded-full object-cover" data-alt="A stylish portrait of a woman in an urban setting with warm golden hour lighting. The image captures a candid, vibrant moment suitable for a social media status update. The aesthetic is modern and high-fidelity, featuring soft bokeh in the background and crisp details on the subject." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjxZLYEVHDJW-BcBERsRxE0FHWNbDavyMAStWTx1IFpTv5mZiOIH0DuNJpL70COjZNIAFGmoJ0ecKBjF5VV7MnQnbE5_xl__0HgjNeah2f8qhHNiBEVLzdoGE_Pn0lcwSF45JJyCp7bsEvpfaw6QKD4J6_kvDUd57hufowD1DEIfHC_kLra_yXcSzaPBFKjzVYc_1UBHzuGep1Gfrqc6-0YG4zf30D3Y5GCJpoRjXQSCG0RD6o-vbd"/>
+</div>
+<span class="font-caption text-caption mt-2 truncate w-full text-center">Sarah Jane</span>
+</div>
+<div class="flex flex-col items-center flex-shrink-0 w-20">
+<div class="w-[72px] h-[72px] status-ring rounded-full">
+<img class="w-full h-full rounded-full object-cover" data-alt="Close-up of a designer's workspace with a minimalist aesthetic, featuring a sleek laptop and a cup of coffee. Soft morning light filters through a nearby window, creating a serene and productive mood. High-end lifestyle photography with a focus on clean lines and a professional color scheme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGqK1fge-ixFL7acZhCximQk8NkksqEcnW4efVDNgLMiZFL88KLMNego8fHbhTH0MoHc2Nv4I_Sy0cKoh4zfav6G1HtCBgfYi2gxPHFVNJi_ckz2pIXLjXHuV4z2GdYdTLYd2589vIgsm5zPzL95iX4_tkgAaoXmV3GhxJEZGF-XJsm13_u4BVpjGNndNpCCextiD0jzQAWvYaPhOGI-Rdf29g-BknQ7hkiL8X7rbnR1_Bj1tOwYCF"/>
+</div>
+<span class="font-caption text-caption mt-2 truncate w-full text-center">Tech Daily</span>
+</div>
+<div class="flex flex-col items-center flex-shrink-0 w-20">
+<div class="w-[72px] h-[72px] status-ring rounded-full">
+<img class="w-full h-full rounded-full object-cover" data-alt="A scenic landscape shot of a mountain range at sunrise, with mist rolling through the valleys. The colors are deep blues and vibrant oranges, evoking a sense of wonder and adventure. The image is captured with professional landscape photography techniques, emphasizing depth and natural beauty." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwY9dizd6JtAZ_A9Powd7H-Ko_qRkV8ZB7pWED4OvKAnm1X88tv_jfduIZXxbokhzrc9gSJsozUpCApCOZiRoSxl47pp-QM8gDyutcohYtx58WitT7X2LVqZupHtlK4hycEStnY_iHqHFYtgeoedZZl_rb2571MsUbcbUvIkFmd1mUivcKXZJr-ipnGx2NMWWvMyfvTIm94PzljJAPEF55Zo1eUWwYBW-BBi1Bbc0zuKVGVIzmnLsO"/>
+</div>
+<span class="font-caption text-caption mt-2 truncate w-full text-center">Alex Riv</span>
+</div>
+<div class="flex flex-col items-center flex-shrink-0 w-20">
+<div class="w-[72px] h-[72px] status-ring rounded-full">
+<img class="w-full h-full rounded-full object-cover" data-alt="An artistic shot of colorful street art on a brick wall in a trendy neighborhood. The lighting is bright and even, highlighting the bold colors and intricate details of the graffiti. The mood is creative and energetic, fitting for a dynamic messaging app's status feature." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_Wa5tUoblf53AN5K-mBNrCkM-_qLmJywInegEOw2NtFvN27nCYKgbU7vYxzlA-ExtYDqu025KKAmDSVWAUb4l--NLGGgNlf0sGUvxDoHOBhgh_PKJgBD7YYEeyiC84oNrbqpyezEBgUMTpDaBQchF2P4nFxcHvxS-Ygb7Dwbj-7YS2zgJi5LuWVz2otp8NRjTYalVQ-h8bWqaEsGRBT1Z3YqrzUqsJe_snJDwcaswU7UDdZ8U4YAz"/>
+</div>
+<span class="font-caption text-caption mt-2 truncate w-full text-center">Urban Art</span>
+</div>
+</div>
+</section>
+<!-- Channels Section -->
+<section class="bg-surface-container-low mx-margin-edge rounded-xl overflow-hidden">
+<div class="p-4 flex justify-between items-center border-b-[0.5px] border-outline-variant/30">
+<h2 class="font-headline text-headline">Channels</h2>
+<span class="material-symbols-outlined text-outline">add</span>
+</div>
+<div class="divide-y-[0.5px] divide-outline-variant/30">
+<!-- Channel Item -->
+<div class="flex items-center gap-gutter-list p-4 active:bg-surface-variant transition-colors">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Logo of a major international news organization, designed with a clean, corporate aesthetic. The icon uses a palette of deep navy and white, conveying reliability and authority. The style is minimalist and high-contrast, optimized for display as a small circular avatar in a mobile app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkViGplRUlWAicwBd4ixDLt7ITnjRn-stLzmGQNlZWiOx-7Q3zE6W_OcWhpyluvc45m6KtKUOkGvrg7lUgY4mQFV0Pu4O0l2owFJLk3e7HBEvmqPEvF_qrrInpG9EK5Cqtb90ZK8RgAJ1kXQ7PjNdlCCL-Jh8R32KeNxNWCkWOMMrQKlbhV7ox_tQlwaiZ2sQcCM2rfKSm1XZ3McAxzUgjxKeKZ7cqZyPsqL6whvDiMboa0-Gwjk_V"/>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-center">
+<h3 class="font-label-bold text-label-bold truncate">Global News Network</h3>
+<span class="font-caption text-caption text-outline">10:45 AM</span>
+</div>
+<p class="font-subheadline text-subheadline text-on-surface-variant truncate">Breaking: New sustainable energy policy announced...</p>
+</div>
+</div>
+<div class="flex items-center gap-gutter-list p-4 active:bg-surface-variant transition-colors">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Vibrant sports-themed channel icon featuring a stylized athlete in motion. The design is dynamic and energetic, using primary colors like blue and red. It has a modern, professional look suitable for a high-traffic sports updates channel in a premium messaging interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAueUV1UWfdz1ny5yzes_dyCuq3uC1767PfS5kFQ7yr4xbM2krLQuWMO57AthlEJgxP-Y0m4T4fzrK53AcP1SRIgZI7As1ZPeut-A8FqDrAFtlnw4ruFYNGoOuCf17spjf23CE5E9zfH5bP2j2FrG6bEBj9zHuVQRZe3Uve1HgkbLL9_ZMxhSi_n45suZ8F0OoiTSOEhitWgOdIh0bZ_Y7n-RLbxuWzVa25NBXa3JyC_v16xAUvqkho"/>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-center">
+<h3 class="font-label-bold text-label-bold truncate">Sports Hub Live</h3>
+<span class="font-caption text-caption text-outline">Yesterday</span>
+</div>
+<p class="font-subheadline text-subheadline text-on-surface-variant truncate">The finals schedule has been officially released. Check out the matchups!</p>
+</div>
+</div>
+<div class="flex items-center gap-gutter-list p-4 active:bg-surface-variant transition-colors">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A minimalist icon for a nature and travel channel, showing a simplified mountain peak against a soft teal background. The design is peaceful and clean, adhering to a modern light-mode design system. High-quality vector-style art that feels premium and curated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8-xT0RnHnSh6NgHbBuS1pw3pfvAPe92jwsh8MUD-rP3FwoshnqpmWTOclEwZ0BQYYUKBjCvSaurQf-4cbKRwadGH8_hbCpO5zeP1Yxr2KxloV_f09_QiKswEZXRaPWXdG-0VR3Cg6v4LVhqxCz7IZVCGW4Y-ddY_ya-r0Zt97uJd5EIvJBd6Z_aEquaTu862QbdB5mTjqWPYSXOvXWLZ9vQjxrQI1wuASQbfvbSJ8BlYJJWkLBdqX"/>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-center">
+<h3 class="font-label-bold text-label-bold truncate">Wild Explorers</h3>
+<span class="font-caption text-caption text-outline">Monday</span>
+</div>
+<p class="font-subheadline text-subheadline text-on-surface-variant truncate">Top 10 hidden gems to visit this summer. Swipe up for the full guide.</p>
+</div>
+</div>
+</div>
+<button class="w-full py-4 text-primary font-headline text-headline active:opacity-70 transition-opacity">
+                Find channels
+            </button>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/80 dark:bg-on-surface/80 backdrop-blur-md border-t-[0.5px] border-outline-variant/30 h-[83px]">
+<div class="h-[49px] flex items-center justify-around">
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">circle_notifications</span>
+<span class="font-caption text-caption mt-1">Updates</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline dark:text-outline-variant active:scale-90 transition-transform">
+<span class="material-symbols-outlined">call</span>
+<span class="font-caption text-caption mt-1">Calls</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline dark:text-outline-variant active:scale-90 transition-transform">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-caption text-caption mt-1">Communities</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline dark:text-outline-variant active:scale-90 transition-transform">
+<div class="relative">
+<span class="material-symbols-outlined">chat</span>
+<span class="absolute -top-1 -right-2 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">12</span>
+</div>
+<span class="font-caption text-caption mt-1">Chats</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline dark:text-outline-variant active:scale-90 transition-transform">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-caption text-caption mt-1">Settings</span>
+</div>
+</div>
+</nav>
+<script>
+        // Micro-interactions for smooth scrolling effect
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-sm');
+            } else {
+                header.classList.remove('shadow-sm');
+            }
+        });
+
+        // Simple active state toggle for navigation (demo purposes)
+        const navItems = document.querySelectorAll('nav > div > div');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navItems.forEach(i => {
+                    i.classList.remove('text-primary', 'dark:text-primary-fixed');
+                    i.classList.add('text-outline', 'dark:text-outline-variant');
+                });
+                item.classList.add('text-primary', 'dark:text-primary-fixed');
+                item.classList.remove('text-outline', 'dark:text-outline-variant');
+            });
+        });
+    </script>
+</body></html>

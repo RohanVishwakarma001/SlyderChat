@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Group Info - Design Team</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdbcf",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#25d366",
+                    "tertiary": "#93492e",
+                    "background": "#faf9fe",
+                    "surface-container": "#eeedf3",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#3de273",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#8cd4c7",
+                    "outline": "#6c7b6b",
+                    "inverse-on-surface": "#f1f0f5",
+                    "surface-dim": "#dad9df",
+                    "surface-container-low": "#f4f3f8",
+                    "tertiary-fixed-dim": "#ffb59b",
+                    "primary": "#006d2f",
+                    "on-surface-variant": "#3c4a3d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#005047",
+                    "secondary": "#1c695f",
+                    "inverse-primary": "#3de273",
+                    "outline-variant": "#bbcbb9",
+                    "on-background": "#1a1b1f",
+                    "on-secondary-fixed": "#00201c",
+                    "on-primary-fixed": "#002109",
+                    "surface-container-highest": "#e3e2e7",
+                    "secondary-container": "#a5ede0",
+                    "on-primary-fixed-variant": "#005322",
+                    "surface-tint": "#006d2f",
+                    "on-secondary-container": "#226e63",
+                    "surface-variant": "#e3e2e7",
+                    "tertiary-container": "#ffa07e",
+                    "surface-container-high": "#e9e7ed",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#a8f0e3",
+                    "on-tertiary-fixed": "#380d00",
+                    "on-surface": "#1a1b1f",
+                    "primary-fixed": "#66ff8e",
+                    "inverse-surface": "#2f3034",
+                    "surface": "#faf9fe",
+                    "on-primary-container": "#005523",
+                    "surface-bright": "#faf9fe",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#78351b",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#763319"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "inset-card": "12px",
+                    "gutter-list": "12px",
+                    "stack-default": "8px",
+                    "header-height-collapsed": "44px",
+                    "stack-compact": "4px",
+                    "header-height-expanded": "96px",
+                    "margin-edge": "16px"
+            },
+            "fontFamily": {
+                    "subheadline": ["Inter"],
+                    "body": ["Inter"],
+                    "large-title": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "headline": ["Inter"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}],
+                    "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}],
+                    "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                    "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                    "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f2f2f7; /* iOS System Gray 6 */
+            -webkit-tap-highlight-color: transparent;
+        }
+        .safe-area-top { padding-top: env(safe-area-inset-top); }
+        .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom); }
+        
+        .ios-list-group {
+            background: white;
+            border-radius: 10px;
+            margin: 0 16px 20px 16px;
+            overflow: hidden;
+        }
+
+        .ios-list-item {
+            display: flex;
+            align-items: center;
+            padding: 11px 16px;
+            position: relative;
+            background: white;
+            transition: background-color 0.1s;
+        }
+
+        .ios-list-item:active {
+            background-color: #e5e5ea;
+        }
+
+        .ios-list-item:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 54px; /* Default inset for icons/avatars */
+            height: 0.5px;
+            background-color: #c6c6c8;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Glassmorphism Header */
+        .glass-header {
+            background: rgba(250, 249, 254, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body text-on-surface antialiased">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 glass-header border-b-[0.5px] border-outline-variant/30 safe-area-top">
+<div class="flex items-center justify-between h-[44px] px-4">
+<button class="flex items-center text-primary active:opacity-50 transition-opacity">
+<span class="material-symbols-outlined text-[24px]">chevron_left</span>
+<span class="font-body text-body">Back</span>
+</button>
+<button class="text-primary font-headline text-headline active:opacity-50 transition-opacity">Edit</button>
+</div>
+</nav>
+<!-- Scrollable Content -->
+<main class="pt-[calc(44px+env(safe-area-inset-top))] pb-safe">
+<!-- Header Section -->
+<header class="flex flex-col items-center pt-6 pb-8 bg-surface">
+<div class="relative w-28 h-28 mb-4">
+<img class="w-full h-full rounded-full object-cover" data-alt="A professional, minimalist circular group avatar for a design team. The design features sleek geometric abstract shapes in shades of emerald green and slate grey against a clean white background, reflecting a modern corporate aesthetic. High resolution, soft studio lighting, sharp focus on clean lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvPsvwr0G3uOVPiG8C38CssYjBxbpyo_a3BfyQhJG0j1EgPqVJ4UmLsJ2XVGFANKwrCqQSOhko0clBPsgVJJkdIwreKjtSANEpIgkttZe3H7E88EYS1jExKQnmDmX6BSmsXefgvWpYQJ1Nlju5EOM0S-8nw0rim2m-Qp7qwszee05ncoKXn7wPfGqRNwG00xvfRZQUp9oyLvo9LuIGGpPX5D-1mN0PiFwQ5eeWV-RgpBbBUNQFOPJI"/>
+</div>
+<h1 class="font-headline text-2xl font-bold text-on-surface">Design Team</h1>
+<p class="font-subheadline text-outline text-subheadline mt-1">Group · 15 members</p>
+<!-- Quick Actions -->
+<div class="flex justify-center gap-2 mt-6 w-full px-4">
+<div class="flex flex-col items-center flex-1 bg-white rounded-xl py-3 active:bg-surface-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-1">call</span>
+<span class="text-primary text-[11px] font-medium">Audio</span>
+</div>
+<div class="flex flex-col items-center flex-1 bg-white rounded-xl py-3 active:bg-surface-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-1">videocam</span>
+<span class="text-primary text-[11px] font-medium">Video</span>
+</div>
+<div class="flex flex-col items-center flex-1 bg-white rounded-xl py-3 active:bg-surface-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-1">person_add</span>
+<span class="text-primary text-[11px] font-medium">Add</span>
+</div>
+<div class="flex flex-col items-center flex-1 bg-white rounded-xl py-3 active:bg-surface-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-1">search</span>
+<span class="text-primary text-[11px] font-medium">Search</span>
+</div>
+</div>
+</header>
+<div class="mt-4">
+<!-- Media, Links & Docs Section -->
+<div class="ios-list-group">
+<button class="ios-list-item w-full text-left group">
+<div class="w-8 h-8 flex items-center justify-center bg-blue-500 rounded-lg mr-3">
+<span class="material-symbols-outlined text-white text-[20px]">photo_library</span>
+</div>
+<div class="flex-1 flex items-center justify-between">
+<span class="font-body text-body">Media, Links, and Docs</span>
+<div class="flex items-center gap-1">
+<span class="text-outline text-subheadline">124</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+</button>
+<div class="flex gap-2 px-4 pb-4 overflow-x-auto no-scrollbar">
+<div class="w-20 h-20 flex-shrink-0 rounded-lg bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist UI design mockup on a smartphone screen showing a SlyderChat messaging interface with green and white chat bubbles. Soft neutral background, professional studio lighting, part of a design portfolio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAZEe5YV67QnaGLUp8HoqmEB47uBxeyzXe0lNZdlO86d8cTnBHm5_noAhEpIKzZZhhhYkwSaPpEeesGbEpiO5MIVgL96zeEdQaSCn4RhczR13bbfvxSexYq46A8gT3jR984snJ9t53_ZUVCtRK7cxWdFPCcK6Vm5cQRWCUVNZ7ssGUnnWQQrhyeEB6zZtt2SiASVv74r2QS63-J-R1W8f_lhhqgKmzoImm8sUfggqbNlenzuGOlAY8"/>
+</div>
+<div class="w-20 h-20 flex-shrink-0 rounded-lg bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A high-quality architectural photo of a modern office building with large glass windows and clean white concrete. The lighting is early morning sun, casting soft long shadows. Professional photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASC1WqSV6d21ZAipMi_q1ILV3rxg8VLQYPQQVCguYzI5PyhRciPd82rmSQhJ9TbNkO0U2Kd6gV3_zXRcFm0cRNHBncGKljTZX2SwSJ-FfbLxkjc8eyyfG3dp7ryg6QOPxZTBvIG3Aokqfht8kLGjYuv_i31L3WUtHFA85mtkFt0jsgfPpk6nCCh-CHEEuuegseqJ3HCm6HbAvqOE0yr88nreZmhtPutxprOD-oBlw9L78MRfjqP7AW"/>
+</div>
+<div class="w-20 h-20 flex-shrink-0 rounded-lg bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A macro shot of a sleek silver laptop keyboard with glowing backlit keys in a dark, professional workspace. The focus is on the precision of the hardware. High contrast, corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-qGqDRS7U6_fW0_FfwSI1YTXMxmPp911AOCVMqV1i8BaIBlKBom9fpjspTOEYPR2BCt4t5EYhgiboBwatdOJ0bW-DFlxhr8Wf_Gkd-YA9RSRVH821X80rM_ln96GBnox19K8m7PScKv2_6cm91vq70ojJM0aQ0AJI9x98uG4ZU7wrh_6bFl_8n1G0bf6n6mKqYN-vb0M7ekDETCZ8IpmgJcDDJjFpVRhBLEIBvsErnPFqew0jIpz1"/>
+</div>
+<div class="w-20 h-20 flex-shrink-0 rounded-lg bg-surface-container-high overflow-hidden flex items-center justify-center bg-outline-variant/10">
+<span class="text-outline font-label-bold text-caption text-center">Design_v2.pdf</span>
+</div>
+</div>
+</div>
+<!-- Settings Section -->
+<div class="ios-list-group">
+<div class="ios-list-item">
+<div class="w-8 h-8 flex items-center justify-center bg-orange-400 rounded-lg mr-3">
+<span class="material-symbols-outlined text-white text-[20px]">volume_off</span>
+</div>
+<div class="flex-1 flex items-center justify-between">
+<span class="font-body text-body">Mute</span>
+<span class="text-outline text-subheadline">No</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant ml-2 text-[20px]">chevron_right</span>
+</div>
+<div class="ios-list-item">
+<div class="w-8 h-8 flex items-center justify-center bg-blue-400 rounded-lg mr-3">
+<span class="material-symbols-outlined text-white text-[20px]">wallpaper</span>
+</div>
+<div class="flex-1">
+<span class="font-body text-body">Wallpaper &amp; Sound</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+<div class="ios-list-item">
+<div class="w-8 h-8 flex items-center justify-center bg-yellow-500 rounded-lg mr-3">
+<span class="material-symbols-outlined text-white text-[20px]">save</span>
+</div>
+<div class="flex-1 flex items-center justify-between">
+<span class="font-body text-body">Save to Camera Roll</span>
+<span class="text-outline text-subheadline">Default</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant ml-2 text-[20px]">chevron_right</span>
+</div>
+</div>
+<!-- Participants Header -->
+<div class="px-8 pb-2 flex justify-between items-center">
+<span class="font-label-bold text-caption text-outline uppercase tracking-wider">15 Participants</span>
+</div>
+<!-- Participants List -->
+<div class="ios-list-group">
+<div class="ios-list-item">
+<div class="w-10 h-10 rounded-full bg-surface-container-high mr-3 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up professional headshot of Michael, a friendly looking man in his 30s with short hair and a business casual shirt. Natural studio lighting, soft blurred office background, high-end corporate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdeCIPm0aGMX9DkpzRduO8_YxT3WqzU9PrkEPIRaLj0QVVDR_0rEa1eSQi2bTR4dMOsdWrDETh_eJQ8DSTnMNueU4mbyemvRRK5P00sp2jVfix4il_bIrJaR4J4u0WsMm6MdIPlWlqTSZcnwi41oJ5qxcwMhn3_c6ApaGgGoVFxF1RPlDaz58nf3GL9ui6VKFKviNR9cClpWoY55bPLgkJWEqCTMUhfErmfrUKhGtFdcF1g2UGhkEo"/>
+</div>
+<div class="flex-1 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline text-body">Michael</span>
+<span class="font-caption text-caption text-outline">Busy</span>
+</div>
+<span class="px-2 py-0.5 rounded border border-outline/30 text-[10px] text-outline font-label-bold">Group Admin</span>
+</div>
+</div>
+<div class="ios-list-item">
+<div class="w-10 h-10 rounded-full bg-surface-container-high mr-3 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up professional headshot of Aria, a confident woman in her late 20s with long dark hair, wearing a stylish blazer. Neutral color palette, bright modern lighting, high-quality portrait photography for a professional profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1S7pxnNWZ3wV5lLR70YogIIszFQP4yGhqHoS-P9RuA8dVKHM8QrKzM9rZ18rOU2tQ7TQbmgpkXb80yLZ95CURBn2G5LEN9bBCWk7-6bey1boUt01-T_0lE9OmIX4jZz2q_rZjXlSoL_SLdqCBmtDSI6LZJPKgYQCPg3CMImfDRqwzHiYMnBT1xFraVnt2lMBG3nWwA0xiNZUstfsapKr-KV1eOP7XojhoyIiCg6m3pQfcw2NMYyh-"/>
+</div>
+<div class="flex-1 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline text-body">Aria</span>
+<span class="font-caption text-caption text-outline">Available</span>
+</div>
+<span class="px-2 py-0.5 rounded border border-outline/30 text-[10px] text-outline font-label-bold">Group Admin</span>
+</div>
+</div>
+<div class="ios-list-item">
+<div class="w-10 h-10 rounded-full bg-surface-container-high mr-3 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional headshot of a diverse team member with a warm smile, wearing modern glasses. Bright and airy corporate setting, soft daylight lighting, sharp focus on facial features." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9RsJjKeoWJLXhPk0dfEVhWXkjn5V3Ac1kaXyom2DDRv3tkQZWXrtAhyhop79PhzMKeRsQgeaYayKsa_55-1yv6pdn3F8Lg8tlHsOHamcf2cDVLDdCZ2er8K0uSbtmQQOAs5IDIgCiBdyasMTS_aRHKYLii-wf-9Iz4CTP-hieB3tgSXTDOh03pCUpz86vdtOohOVu5kHVe_O-0mal3MSDvpVdVW1Q9mD3zrv_SQ2pOm9TBG_W58db"/>
+</div>
+<div class="flex flex-col">
+<span class="font-headline text-body">Julian</span>
+<span class="font-caption text-caption text-outline">At work</span>
+</div>
+</div>
+<button class="ios-list-item w-full">
+<div class="w-10 h-10 flex items-center justify-center bg-surface-container rounded-full mr-3">
+<span class="material-symbols-outlined text-primary">keyboard_arrow_down</span>
+</div>
+<span class="font-body text-primary text-body">View all</span>
+</button>
+</div>
+<!-- Danger Zone -->
+<div class="ios-list-group">
+<button class="ios-list-item w-full active:opacity-70 transition-opacity">
+<span class="material-symbols-outlined text-error mr-3">logout</span>
+<span class="font-body text-body text-error">Exit Group</span>
+</button>
+<button class="ios-list-item w-full active:opacity-70 transition-opacity">
+<span class="material-symbols-outlined text-error mr-3">report</span>
+<span class="font-body text-body text-error">Report Group</span>
+</button>
+</div>
+<div class="h-20"></div> <!-- Spacer for bottom safety -->
+</div>
+</main>
+<!-- Bottom Navigation (Shared Component Context) -->
+<footer class="fixed bottom-0 w-full z-50 pb-safe glass-header border-t-[0.5px] border-outline-variant/30">
+<div class="h-[49px] flex items-center justify-around px-2">
+<div class="flex flex-col items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[24px]">circle_notifications</span>
+<span class="font-caption text-[10px]">Updates</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[24px]">call</span>
+<span class="font-caption text-[10px]">Calls</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[24px]">groups</span>
+<span class="font-caption text-[10px]">Communities</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">chat</span>
+<span class="font-caption text-[10px]">Chats</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="font-caption text-[10px]">Settings</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for smooth scrolling header effect
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                nav.style.boxShadow = '0 1px 2px rgba(0,0,0,0.05)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Simple touch active state handler for better iOS feel
+        document.querySelectorAll('.ios-list-item, .flex-1.bg-white').forEach(item => {
+            item.addEventListener('touchstart', () => {
+                item.style.opacity = '0.7';
+            });
+            item.addEventListener('touchend', () => {
+                item.style.opacity = '1';
+            });
+        });
+    </script>
+</body></html>

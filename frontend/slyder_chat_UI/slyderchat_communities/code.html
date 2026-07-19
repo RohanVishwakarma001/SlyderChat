@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Communities</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1a1b1f",
+                        "surface-dim": "#dad9df",
+                        "outline-variant": "#bbcbb9",
+                        "on-primary": "#ffffff",
+                        "background": "#faf9fe",
+                        "tertiary-container": "#ffa07e",
+                        "surface-variant": "#e3e2e7",
+                        "primary-fixed": "#66ff8e",
+                        "secondary-container": "#a5ede0",
+                        "primary": "#006d2f",
+                        "outline": "#6c7b6b",
+                        "surface-bright": "#faf9fe",
+                        "surface-container": "#eeedf3",
+                        "surface-tint": "#006d2f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#005322",
+                        "on-primary-fixed": "#002109",
+                        "on-tertiary-container": "#78351b",
+                        "surface-container-low": "#f4f3f8",
+                        "on-background": "#1a1b1f",
+                        "on-tertiary-fixed-variant": "#763319",
+                        "on-secondary-fixed-variant": "#005047",
+                        "on-primary-container": "#005523",
+                        "secondary-fixed-dim": "#8cd4c7",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#a8f0e3",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#3de273",
+                        "surface-container-highest": "#e3e2e7",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#3de273",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#226e63",
+                        "tertiary": "#93492e",
+                        "secondary": "#1c695f",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "tertiary-fixed": "#ffdbcf",
+                        "surface-container-high": "#e9e7ed",
+                        "primary-container": "#25d366",
+                        "inverse-surface": "#2f3034",
+                        "on-secondary-fixed": "#00201c",
+                        "on-surface-variant": "#3c4a3d",
+                        "surface": "#faf9fe",
+                        "inverse-on-surface": "#f1f0f5",
+                        "on-tertiary-fixed": "#380d00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "header-height-expanded": "96px",
+                        "stack-compact": "4px",
+                        "margin-edge": "16px",
+                        "inset-card": "12px",
+                        "header-height-collapsed": "44px",
+                        "stack-default": "8px",
+                        "gutter-list": "12px"
+                    },
+                    "fontFamily": {
+                        "large-title": ["Inter"],
+                        "headline": ["Inter"],
+                        "subheadline": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "body": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "large-title": ["34px", {"lineHeight": "41px", "letterSpacing": "0.37px", "fontWeight": "700"}],
+                        "headline": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "600"}],
+                        "subheadline": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.24px", "fontWeight": "400"}],
+                        "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.08px", "fontWeight": "600"}],
+                        "body": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.41px", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #faf9fe;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+        }
+        .safe-area-top { padding-top: env(safe-area-inset-top); }
+        .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom); }
+        .ios-separator { border-bottom: 0.5px solid rgba(0, 0, 0, 0.1); }
+        .ios-list-inset { margin-left: 68px; }
+        .community-card-shadow { box-shadow: 0 4px 20px -5px rgba(0,0,0,0.05); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body text-on-surface select-none">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-on-surface/80 backdrop-blur-md border-b-[0.5px] border-outline-variant/30 flex flex-col px-margin-edge pt-safe pb-stack-default">
+<div class="flex justify-between items-center h-header-height-collapsed mt-4">
+<button class="text-primary font-body text-body active:opacity-70 transition-opacity">Edit</button>
+<span class="material-symbols-outlined text-primary active:opacity-70 transition-opacity">photo_camera</span>
+</div>
+<h1 class="font-large-title text-large-title-mobile dark:text-on-surface mt-2">Communities</h1>
+</header>
+<main class="pt-[140px] pb-32">
+<!-- Hero Section -->
+<section class="px-margin-edge mb-8">
+<div class="relative overflow-hidden rounded-xl bg-surface-container-high h-48 flex items-center justify-center community-card-shadow">
+<img class="w-full h-full object-cover opacity-90" data-alt="A clean, vibrant digital illustration of a diverse SlyderChat community gathering in a bright, modern park. The scene features people talking, working on laptops, and playing music. The art style is minimalist with a soft color palette of greens, light blues, and warm earth tones, matching a professional light-mode UI design. Soft overhead lighting creates a welcoming, efficient atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq0p1D6PKVYwnsxBeS-2HVNkkcE8v6p5sys2zHjknQuQW-munyWfRqVnlPQcfR8Rc7xPDS4kZ7MgCJ5oZfkd2UK5axCoQpi-K6HRBeltKtrnM4ITmnADt3JSXQVSYkd6u-CwtOxWgLgN2mSmD9_owhlD58dPjtjB11QWAAkZQjUiiBZwutzaEWJyyAUSXeY9HLCgxfAJWcXgbIxYwgBUGMgMqLTDqibgmZ4Thzu2xEtHqfMVIQknLl"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+</div>
+<div class="mt-4 space-y-1">
+<h2 class="font-headline text-headline">Stay connected with a community</h2>
+<p class="font-subheadline text-subheadline text-outline">Communities bring members together in topic-based groups, and make it easy to get announcements.</p>
+</div>
+</section>
+<!-- New Community Action -->
+<div class="bg-surface-container-lowest mb-8">
+<button class="w-full flex items-center px-margin-edge py-3 space-x-gutter-list active:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+</div>
+<div class="flex-1 flex justify-between items-center py-2 ios-separator">
+<span class="font-headline text-headline text-primary">New Community</span>
+<span class="material-symbols-outlined text-outline text-[20px]">chevron_right</span>
+</div>
+</button>
+</div>
+<!-- Community List -->
+<div class="space-y-6">
+<!-- Community 1 -->
+<div class="bg-surface-container-lowest">
+<!-- Header -->
+<div class="flex items-center px-margin-edge py-3 space-x-gutter-list active:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A sophisticated minimalist logo for a residential neighborhood community called Green Valley. The icon features a stylized green leaf and a small house shape in a professional corporate style. The colors are deep forest green and soft white, set against a clean, bright background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkUYMqZM2EGydbGb8HVCNgIpiy7QhUsG169Wq1k3GeQeWyRIjjawP3tZ-eY6zzD7QiZWyr8MnyslFwkJ_76ujCiDzXWfxtgTfOe2CUXY-HJKlLV63E-SZZ-xfu0torwPlyjU7HnL_IPH0kw0IEYDHpoGF_bLa_KOlVasyCxuukFMplaLbDAHbLu7cbWl9LntQ9GJnEtRpDfUcfSCk8vV9otxwqHRZTEWw0yCb6FtwDZYP5Bl0fCNVm"/>
+</div>
+<div class="flex-1 py-1">
+<h3 class="font-headline text-headline">Green Valley Residents</h3>
+</div>
+</div>
+<!-- Announcements -->
+<div class="flex items-center px-margin-edge py-3 space-x-gutter-list active:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">campaign</span>
+</div>
+<div class="flex-1 py-2 ios-separator flex flex-col">
+<div class="flex justify-between items-center">
+<span class="font-headline text-headline">Announcements</span>
+<span class="font-caption text-caption text-outline">10:45 AM</span>
+</div>
+<p class="font-subheadline text-subheadline text-outline line-clamp-1">Board Meeting: The monthly board meeting is scheduled for tomorrow at 7 PM.</p>
+</div>
+</div>
+<!-- Sub-groups -->
+<div class="flex items-center px-margin-edge py-3 space-x-gutter-list active:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, flat icon of a security badge and shield, representing a community watch group. The colors are muted blue and grey, maintaining a high-fidelity corporate SlyderChat UI aesthetic. The background is soft white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgy1eISpWnCMcyNfPggjIorpMKH_3kjs9WBMWq9BiHXeZdjQd2EMXEfkPZN9uq9-Hn5ZqNmISvQWC-8UDHFepVcnTsPSG9sK4_AG-rRF-ro9S_9lmXqCl9g7LKyyFi7_rP3G8JFT9rdg4KImusVx9hpKJGXqw2mqfpYDyJiumeE-S8Qan_cxkipFwmjvbibhACid480O6E9VRgMps5KHKyradY5arBhKY__Gm4lhjLrmtUGJFa1kK8"/>
+</div>
+<div class="flex-1 py-2 ios-separator flex flex-col">
+<div class="flex justify-between items-center">
+<span class="font-headline text-headline">Neighborhood Watch</span>
+<span class="font-caption text-caption text-outline">Yesterday</span>
+</div>
+<p class="font-subheadline text-subheadline text-outline line-clamp-1">John: All clear on Maple Street today. No unusual activity reported.</p>
+</div>
+</div>
+<!-- See All Footer -->
+<button class="w-full flex items-center px-margin-edge py-4 space-x-gutter-list active:bg-surface-container-high transition-colors">
+<div class="w-12"></div>
+<div class="flex-1 flex items-center text-outline">
+<span class="material-symbols-outlined mr-2">keyboard_arrow_right</span>
+<span class="font-subheadline text-subheadline">View all 12 groups</span>
+</div>
+</button>
+</div>
+<!-- Community 2 -->
+<div class="bg-surface-container-lowest">
+<!-- Header -->
+<div class="flex items-center px-margin-edge py-3 space-x-gutter-list active:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A modern SlyderChat tech company logo, featuring a geometric blue and teal abstract node structure. The style is sleek, professional, and minimalist, designed for a community avatar in a high-end mobile application. Bright, even lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQrL2HCnTcP5hRTRbDZrxr8qVn8wAbBxI64bLzYFGDcGLxiIjIi_cbHstPjq_D1FCxkxpq4bA5hdhTU_pNjI1mLEG5MAdjMRHCIZ8a-NL7F0cXPv9t7uUGY6sWCWRm1qZQWUxgGY2u3TGVMjxawWS_7-F6DrcQokJ-pHJWyIbVP5LAW3JJhotiwNCoEJ77WYCoHkEnvhy72kqNKLYZwhUY96hatSlrttDC6-vM4cxZ5F5qfeCXe2WQ"/>
+</div>
+<div class="flex-1 py-1">
+<h3 class="font-headline text-headline">Acme Corp Engineering</h3>
+</div>
+</div>
+<!-- Announcements -->
+<div class="flex items-center px-margin-edge py-3 space-x-gutter-list active:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">campaign</span>
+</div>
+<div class="flex-1 py-2 ios-separator flex flex-col">
+<div class="flex justify-between items-center">
+<span class="font-headline text-headline">Announcements</span>
+<span class="font-caption text-caption text-outline">Tuesday</span>
+</div>
+<p class="font-subheadline text-subheadline text-outline line-clamp-1">New Deployment: Production v2.4.0 is now live for all regions.</p>
+</div>
+</div>
+<!-- Sub-groups -->
+<div class="flex items-center px-margin-edge py-3 space-x-gutter-list active:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A minimalist icon of a coffee mug and a speech bubble, representing a social watercooler chat for a professional team on SlyderChat. Soft pastel colors of pink and light orange, clean lines, and a modern corporate design feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJmTWmEPpwRmpr3gWpP0783jM3FGakK0vM9NAmjnwXJgwpOURs1bd9YHX5WjbVdhyE0K6VKeJQifSAx_r89ATziJGWgw56WuJenriY_diUGyOQ6ysCE3z21RQkr1e-8TyQQv077jK-qiKLXraU_KatAA-CRWG-_g8O8JF54vaYkOIWDdob2fvJeyQfwdAIPnIfUp4oLj__fBZ7vRHGOp1_r4h44ttRhgf0Gt6gVPC1MylG94uzdXFt"/>
+</div>
+<div class="flex-1 py-2 ios-separator flex flex-col">
+<div class="flex justify-between items-center">
+<span class="font-headline text-headline">Watercooler Chat</span>
+<span class="font-caption text-caption text-outline">Monday</span>
+</div>
+<p class="font-subheadline text-subheadline text-outline line-clamp-1">Sarah: Does anyone have recommendations for a good local lunch spot?</p>
+</div>
+</div>
+<!-- See All Footer -->
+<button class="w-full flex items-center px-margin-edge py-4 space-x-gutter-list active:bg-surface-container-high transition-colors">
+<div class="w-12"></div>
+<div class="flex-1 flex items-center text-outline">
+<span class="material-symbols-outlined mr-2">keyboard_arrow_right</span>
+<span class="font-subheadline text-subheadline">View all 8 groups</span>
+</div>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/80 dark:bg-on-surface/80 backdrop-blur-md border-t-[0.5px] border-outline-variant/30 h-[83px]">
+<div class="h-[49px] flex items-center justify-around">
+<!-- Updates -->
+<button class="flex flex-col items-center justify-center text-outline dark:text-outline-variant active:scale-90 transition-transform">
+<span class="material-symbols-outlined">circle_notifications</span>
+<span class="font-caption text-caption">Updates</span>
+</button>
+<!-- Calls -->
+<button class="flex flex-col items-center justify-center text-outline dark:text-outline-variant active:scale-90 transition-transform">
+<span class="material-symbols-outlined">call</span>
+<span class="font-caption text-caption">Calls</span>
+</button>
+<!-- Communities (Active) -->
+<button class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-caption text-caption">Communities</span>
+</button>
+<!-- Chats -->
+<button class="flex flex-col items-center justify-center text-outline dark:text-outline-variant active:scale-90 transition-transform">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-caption text-caption">Chats</span>
+</button>
+<!-- Settings -->
+<button class="flex flex-col items-center justify-center text-outline dark:text-outline-variant active:scale-90 transition-transform">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-caption text-caption">Settings</span>
+</button>
+</div>
+</nav>
+<script>
+        // Micro-interaction for list items
+        document.querySelectorAll('button, .flex.items-center').forEach(el => {
+            el.addEventListener('touchstart', () => {
+                el.classList.add('opacity-70');
+            });
+            el.addEventListener('touchend', () => {
+                el.classList.remove('opacity-70');
+            });
+        });
+
+        // Simple scroll header effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-sm');
+            } else {
+                header.classList.remove('shadow-sm');
+            }
+        });
+    </script>
+</body></html>
