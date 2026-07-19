@@ -2,6 +2,12 @@ server:
   port: ${PORT:8080}
 
 spring:
+  # Loads backend/.env if present (local dev only — gitignored, never bundled
+  # into the Docker image). `optional:` means nothing breaks if it's missing,
+  # e.g. on Render, which supplies these via real env vars instead.
+  config:
+    import: optional:file:.env[.properties]
+
   application:
     name: chatapp
 

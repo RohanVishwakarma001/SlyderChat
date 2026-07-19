@@ -5,7 +5,7 @@ target/
 .claude/
 # Your real local secrets go here (see application.yml for the safe, committed
 # template with env-var placeholders) — never commit this file.
-src/main/resources/application-local.yml
+.env
 .mvn/
 mvnw
 mvnw.cmd

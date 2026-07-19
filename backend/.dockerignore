@@ -4,5 +4,5 @@ target/
 .vscode/
 .mvn/
 .github/
-application-local.yml
+.env
 README.md
